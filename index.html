@@ -55,7 +55,7 @@
                         <section class="search">
                             <div class="input-container aligner">
                                 <i class="fas fa-search"></i>
-                                <input type="text" name="" value="" placeholder="Cerca o inizia una nuova chat">
+                                <input v-model="contactToFind" @keyup="find(contactToFind)" type="text" name="" value="" placeholder="Cerca o inizia una nuova chat">
                             </div>
                         </section>
                         <!-- Fine Sezione Search -->
@@ -64,7 +64,7 @@
                         <section class="user-contacts">
                             <ul class="contacts-list">
 
-                                <li v-for="(contact, index) in contacts" @click="giveIndex(index)" class="aligner">
+                                <li v-for="(contact, index) in contacts" @click="giveIndex(index)" v-if="contact.visible == true" class="aligner">
                                     <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar">
                                     <h3>{{ contact.name }}</h3>
                                 </li>
@@ -119,7 +119,7 @@
                     <section class="messenger aligner">
 
                         <i class="far fa-smile"></i>
-                        <input v-model="newMessage"@keyup.enter="addMsg(newMessage)" type="text" placeholder="Scrivi un messaggio">
+                        <input v-model="newMessage" @keyup.enter="addMsg()" type="text" placeholder="Scrivi un messaggio">
                         <i class="fas fa-microphone"></i>
 
                     </section>

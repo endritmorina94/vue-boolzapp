@@ -98,7 +98,10 @@ var app = new Vue({
         // userMessages: [],
 
         //Creo una stringa vuota che poi assumerà la forma del messaggio digitato dall'utente
-        newMessage: ""
+        newMessage: "",
+
+        //Creo una variabile vuota che assuemerà la forma della ricerca effettuata dall'utente
+        contactToFind: ""
 
     },
 
@@ -111,18 +114,17 @@ var app = new Vue({
             this.indexOfContact = index;
         },
 
-        //Creo una funziona che al click del bottone enter aggiungerà un oggetto all'array
-        //userMessages con il messaggio dell'utente sotto la key text
-        //e anche la digitata sotto la key date
-        //messaggio ==> è il messaggio che viene scritto dall'utente
-        addMsg(messaggio) {
+        //Creo una funzione che al click del bottone enter aggiungerà un oggetto all'array
+        //dei messaggi del contatto con il messaggio dell'utente sotto la key text
+        //e anche la data sotto la key date
+        addMsg() {
 
             const messaggi = this.contacts[this.indexOfContact].messages;
 
             //Creo l'oggetto
             const msgObj = {
                 date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
-                text: messaggio,
+                text: this.newMessage,
                 status: 'sent'
             };
 
@@ -132,6 +134,9 @@ var app = new Vue({
             //Resetto l'input
             this.newMessage = "";
 
+            //Setto un timeout un secondo dopo l'invio del messaggio da parte
+            //dell'utente, creerà un messaggio di risposta "ok" e lo pusherà
+            //nell'arrey dei messaggi
             setTimeout(() => {
 
                 const risposta = {
@@ -144,7 +149,29 @@ var app = new Vue({
 
             }, 1000);
 
+        },
+
+        //Creo una funzione che prenderà il valore digitato dall'utente e lo cercherà
+        //tra i nomi dei contatti, mostrando poi quelli trovati e nascondendo quelli non trovati
+        find() {
+
+            this.contacts.forEach((element) => {
+
+                const contactName = element.name.toLowerCase();
+                const userResearch = this.contactToFind.toLowerCase();
+
+                if (!contactName.includes(userResearch)){
+                    element.visible = false;
+                } else {
+                    element.visible = true;
+                }
+
+            });
+
+
         }
+
+
 
 
 
