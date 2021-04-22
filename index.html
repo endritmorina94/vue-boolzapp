@@ -105,20 +105,14 @@
                     <!-- Inizio Chat Content -->
                     <main>
 
-                        <div v-for="message in contacts[indexOfContact].messages" class="received-msg">
-                            <p>
-                                {{ message.text }}
-                                <span>{{ message.date }}</span>
-
-                            </p>
-                        </div>
-
-                        <div v-for="message in userMessages" class="delivered-msg">
+                        <div v-for="message in contacts[indexOfContact].messages" :class="(message.status == 'sent') ? 'delivered-msg' : 'received-msg'">
                             <p>
                                 {{ message.text }}
                                 <span>{{ message.date }}</span>
                             </p>
                         </div>
+
+
 
                     </main>
                     <!-- Fine Chat Content -->

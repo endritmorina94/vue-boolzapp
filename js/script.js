@@ -93,9 +93,9 @@ var app = new Vue({
         //Creo un index base che mi servirà per indicare le informazioni di quale
         //contatto mostrare nella sezione Chat
         indexOfContact: 0,
-
-        //Creo un array vuoto per immagazzinare i messaggi dell'utente
-        userMessages: [],
+        //
+        // //Creo un array vuoto per immagazzinare i messaggi dell'utente
+        // userMessages: [],
 
         //Creo una stringa vuota che poi assumerà la forma del messaggio digitato dall'utente
         newMessage: ""
@@ -117,6 +117,8 @@ var app = new Vue({
         //messaggio ==> è il messaggio che viene scritto dall'utente
         addMsg(messaggio) {
 
+            const messaggi = this.contacts[this.indexOfContact].messages;
+
             //Creo l'oggetto
             const msgObj = {
                 date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
@@ -125,7 +127,7 @@ var app = new Vue({
             };
 
             //Lo pusho nell'array
-            this.userMessages.push(msgObj);
+            messaggi.push(msgObj);
 
             //Resetto l'input
             this.newMessage = "";
@@ -135,10 +137,10 @@ var app = new Vue({
                 const risposta = {
                     date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
                     text: "ok",
-                    status: 'sent'
+                    status: 'received'
                 };
 
-                this.contacts[this.indexOfContact].messages.push(risposta);
+                messaggi.push(risposta);
 
             }, 1000);
 
