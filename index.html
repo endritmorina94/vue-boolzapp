@@ -106,19 +106,18 @@
                     <!-- Inizio Chat Content -->
                     <main>
 
-                        <div v-for="message in contacts[indexOfContact].messages" class="msg" :class="(message.status == 'sent') ? 'delivered-msg' : 'received-msg'">
-                            <p>
+                        <div v-for="(message, index) in contacts[indexOfContact].messages" class="msg" :class="(message.status == 'sent') ? 'delivered-msg' : 'received-msg'">
+                            <p @click="showDropdown(index)">
                                 {{ message.text }}
 
                                 <span>{{ message.date }}</span>
 
-                                <ul class="dropdown">
-                                    <li>Message info</li>
-                                    <li>Delete Message</li>
-                                </ul>
-
                             </p>
 
+                            <ul v-if="contacts[indexOfContact].messages[index].dropdown" class="dropdown">
+                                <li>Message info</li>
+                                <li @click="removeMsg(index)">Delete Message</li>
+                            </ul>
 
                         </div>
 
