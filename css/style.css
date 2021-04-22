@@ -153,6 +153,7 @@ main {
 .contacts li {
     padding: 10px 20px;
     cursor: pointer;
+    position: relative;
 }
 
 .contacts li:hover {
@@ -167,6 +168,14 @@ main {
     width: 70px;
     border-radius: 50%;
     margin-right: 20px;
+}
+
+.contacts li span {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding: 8px;
+    font-size: 12px;
 }
 /* FINE MAIN */
 

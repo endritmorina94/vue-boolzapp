@@ -67,6 +67,7 @@
                                 <li v-for="(contact, index) in contacts" @click="giveIndex(index)" v-if="contact.visible == true" class="aligner">
                                     <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar">
                                     <h3>{{ contact.name }}</h3>
+                                    <span>{{contact.messages[contact.messages.length - 1].date}}</span>
                                 </li>
 
                             </ul>
