@@ -126,7 +126,14 @@ var app = new Vue({
         //assegnerà l'index del contatto cliccato alla variabile indexOfContact
         //index ==> index del contatto cliccato
         giveIndex(index) {
+
             this.indexOfContact = index;
+
+            //Chiudo possibili dropdown lasciate aperte
+            this.contacts[this.indexOfContact].messages.forEach((element) => {
+                element.dropdown = false;
+            });
+            
         },
 
         //Creo una funzione che al click del bottone enter aggiungerà un oggetto all'array
@@ -198,11 +205,11 @@ var app = new Vue({
                     element.dropdown = false;
                 });
 
-                thisMessage.dropdown = !thisMessage.dropdown;
+                thisMessage.dropdown = true;
 
             } else {
 
-                thisMessage.dropdown = !thisMessage.dropdown;
+                thisMessage.dropdown = false;
 
             }
 
