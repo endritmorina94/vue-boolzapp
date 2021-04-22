@@ -189,14 +189,22 @@ var app = new Vue({
         //Creo una funzione che al click sul messaggio, mostra una dropdown, nascondendo quelle già aperte
         //indice ==> è l'index del messaggio che mi viene passato dall'html
         showDropdown(indice) {
-
-            this.contacts[this.indexOfContact].messages.forEach((element) => {
-                element.dropdown = false;
-            });
-
-
+            
             const thisMessage = this.contacts[this.indexOfContact].messages[indice];
-            thisMessage.dropdown = !thisMessage.dropdown;
+
+            if (thisMessage.dropdown == false) {
+
+                this.contacts[this.indexOfContact].messages.forEach((element) => {
+                    element.dropdown = false;
+                });
+
+                thisMessage.dropdown = !thisMessage.dropdown;
+
+            } else {
+
+                thisMessage.dropdown = !thisMessage.dropdown;
+
+            }
 
         },
 
