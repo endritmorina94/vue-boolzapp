@@ -10,8 +10,133 @@
     </head>
     <body>
 
+        <div class="container aligner">
 
-        
+            <div id="root" class="app">
+                <!-- Inizio Sezione Contatti -->
+                <section class="contacts">
+
+                    <!-- Inizio Header Contatti -->
+                    <header class="aligner">
+
+                        <div class="user">
+                            <img src="img/avatar_8.jpg" alt="Avatar User">
+                            <h3>Pinko Pallo</h3>
+                        </div>
+
+                        <div class="icons">
+                            <i class="fas fa-circle-notch"></i>
+                            <i class="fas fa-comment-alt"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+
+                    </header>
+                    <!-- Fine Header Contatti -->
+
+                    <!-- Inizio Sezione Setup delle Notifiche -->
+                    <section class="notifications aligner">
+
+                        <span class="bell">
+                            <i class="fas fa-bell-slash"></i>
+                        </span>
+
+                        <div class="notifications-set">
+                            <p>Ricevi notifiche di nuovi messaggi</p>
+                            <a href="#">Attiva notifiche desktop</a>
+                        </div>
+
+                    </section>
+                    <!-- Fine Sezione Setup delle Notifiche -->
+
+                    <!-- Inizio Main -->
+                    <main>
+
+                        <!-- Inizio Sezione Search -->
+                        <section class="search">
+                            <div class="input-container aligner">
+                                <i class="fas fa-search"></i>
+                                <input type="text" name="" value="" placeholder="Cerca o inizia una nuova chat">
+                            </div>
+                        </section>
+                        <!-- Fine Sezione Search -->
+
+                        <!-- Inizio Lista Contatti -->
+                        <section class="user-contacts">
+                            <ul class="contacts-list">
+                                <li v-for="(contact, index) in contacts" class="aligner">
+                                    <img :src='`img/avatar${contact.avatar}.jpg`' alt="avatar">
+                                    <h3>{{ contact.name }}</h3>
+                                </li>
+                            </ul>
+                        </section>
+                        <!-- Fine Lista Contatti -->
+
+                    </main>
+                    <!-- Fine Main -->
+
+                </section>
+                <!-- Fine Sezione Contatti -->
+
+                <!-- Inizio Sezione Chat -->
+                <section class="chat">
+
+                    <!-- Inizio Chat Header -->
+                    <header class="aligner">
+
+                        <div class="user">
+                            <img src="img/avatar_8.jpg" alt="Avatar User">
+                            <div class="user-info">
+                                <h3>Pinko Pallo</h3>
+                                <p>Ultimo accesso oggi alle</p>
+                            </div>
+                        </div>
+
+                        <div class="icons">
+                            <i class="fas fa-search"></i>
+                            <i class="fas fa-paperclip"></i>
+                            <i class="fas fa-ellipsis-v"></i>
+                        </div>
+
+                    </header>
+                    <!-- Fine Chat Header -->
+
+                    <!-- Inizio Chat Content -->
+                    <main>
+
+                        <div class="received-msg">
+                            <p>
+                                ciaooo
+                                <span>11:20</span>
+
+                            </p>
+                        </div>
+
+                        <div class="delivered-msg">
+                            <p>
+                                Ciaone
+                                <span>11:20</span>
+                            </p>
+                        </div>
+
+                    </main>
+                    <!-- Fine Chat Content -->
+
+                    <!-- Inizio Messenger -->
+                    <section class="messenger aligner">
+
+                        <i class="far fa-smile"></i>
+                        <input type="text" placeholder="Scrivi un messaggio">
+                        <i class="fas fa-microphone"></i>
+
+                    </section>
+                    <!-- Fine Messenger -->
+
+                </section>
+                <!-- Fine Sezione Chat -->
+
+            </div>
+
+        </div>
 
     <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script src="js/script.js" charset="utf-8"></script>
