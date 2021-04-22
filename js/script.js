@@ -88,11 +88,17 @@ var app = new Vue({
         			}
         		],
         	},
-        ]
+        ],
+
+        indexOfContact: 0,
 
     },
 
     methods: {
+
+        giveIndex(index) {
+            this.indexOfContact = index;
+        }
 
     }
 

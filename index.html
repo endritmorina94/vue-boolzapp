@@ -63,10 +63,12 @@
                         <!-- Inizio Lista Contatti -->
                         <section class="user-contacts">
                             <ul class="contacts-list">
-                                <li v-for="(contact, index) in contacts" class="aligner">
-                                    <img :src='`img/avatar${contact.avatar}.jpg`' alt="avatar">
+
+                                <li v-for="(contact, index) in contacts" @click="giveIndex(index)" class="aligner">
+                                    <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar">
                                     <h3>{{ contact.name }}</h3>
                                 </li>
+
                             </ul>
                         </section>
                         <!-- Fine Lista Contatti -->
@@ -84,9 +86,9 @@
                     <header class="aligner">
 
                         <div class="user">
-                            <img src="img/avatar_8.jpg" alt="Avatar User">
+                            <img :src="`img/avatar${contacts[indexOfContact].avatar}.jpg`" alt="Avatar User">
                             <div class="user-info">
-                                <h3>Pinko Pallo</h3>
+                                <h3>{{ contacts[indexOfContact].name }}</h3>
                                 <p>Ultimo accesso oggi alle</p>
                             </div>
                         </div>
@@ -103,10 +105,10 @@
                     <!-- Inizio Chat Content -->
                     <main>
 
-                        <div class="received-msg">
+                        <div v-for="message in contacts[indexOfContact].messages" class="received-msg">
                             <p>
-                                ciaooo
-                                <span>11:20</span>
+                                {{ message.text }}
+                                <span>{{ message.date }}</span>
 
                             </p>
                         </div>
