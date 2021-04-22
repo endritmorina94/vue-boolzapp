@@ -8,6 +8,7 @@ var app = new Vue({
         	{
         		name: 'Michele',
         		avatar: '_1',
+                isActive: false,
         		visible: true,
         		messages: [
         			{
@@ -33,64 +34,75 @@ var app = new Vue({
         	{
         		name: 'Fabio',
         		avatar: '_2',
+                isActive: false,
         		visible: true,
         		messages: [
         			{
         				date: '20/03/2020 16:30:00',
         				text: 'Ciao come stai?',
-        				status: 'sent'
+        				status: 'sent',
+                        dropdown: false
         			},
         			{
         				date: '20/03/2020 16:30:55',
         				text: 'Bene grazie! Stasera ci vediamo?',
-        				status: 'received'
+        				status: 'received',
+                        dropdown: false
         			},
         			{
         				date: '20/03/2020 16:35:00',
         				text: 'Mi piacerebbe ma devo andare a fare la spesa.',
-        				status: 'sent'
+        				status: 'sent',
+                        dropdown: false
         			}
         		],
         	},
         	{
         		name: 'Samuele',
         		avatar: '_3',
+                isActive: false,
         		visible: true,
         		messages: [
         			{
         				date: '28/03/2020 10:10:40',
         				text: 'La Marianna va in campagna',
-        				status: 'received'
+        				status: 'received',
+                        dropdown: false
         			},
         			{
         				date: '28/03/2020 10:20:10',
         				text: 'Sicuro di non aver sbagliato chat?',
-        				status: 'sent'
+        				status: 'sent',
+                        dropdown: false
         			},
         			{
         				date: '28/03/2020 16:15:22',
         				text: 'Ah scusa!',
-        				status: 'received'
+        				status: 'received',
+                        dropdown: false
         			}
         		],
         	},
         	{
         		name: 'Luisa',
         		avatar: '_4',
+                isActive: false,
         		visible: true,
         		messages: [
         			{
         				date: '10/01/2020 15:30:55',
         				text: 'Lo sai che ha aperto una nuova pizzeria?',
-        				status: 'sent'
+        				status: 'sent',
+                        dropdown: false
         			},
         			{
         				date: '10/01/2020 15:50:00',
         				text: 'Si, ma preferirei andare al cinema',
-        				status: 'received'
+        				status: 'received',
+                        dropdown: false
         			}
         		],
-        	},
+        	}
         ],
 
         //Creo un index base che mi servirà per indicare le informazioni di quale
@@ -174,25 +186,40 @@ var app = new Vue({
 
         },
 
-        showDropdown(index) {
+        //Creo una funzione che al click sul messaggio, mostra una dropdown, nascondendo quelle già aperte
+        //indice ==> è l'index del messaggio che mi viene passato dall'html
+        showDropdown(indice) {
 
             this.contacts[this.indexOfContact].messages.forEach((element) => {
                 element.dropdown = false;
             });
 
 
-            const thisMessage = this.contacts[this.indexOfContact].messages[index];
+            const thisMessage = this.contacts[this.indexOfContact].messages[indice];
             thisMessage.dropdown = !thisMessage.dropdown;
+
         },
 
-        removeMsg(index) {
+        //Creo una funzione che cancella il messaggio selezionato
+        //indice ==> è l'index del messaggio che mi viene passato dall'html
+        removeMsg(indice) {
 
-            this.contacts[this.indexOfContact].messages.splice(index, 1);
+            this.contacts[this.indexOfContact].messages.splice(indice, 1);
 
+        },
+
+        //Creo una funzione che toglie a tutti i contatti la classe active e la toggla
+        //al contatto selezionato nella lista dei contatti
+        addClassActive() {
+
+            //Tolgo la classe active a tutti io contatti
+            this.contacts.forEach((element) => {
+                element.isActive = false;
+            });
+
+            //Togglo la classe active al contatto selezionato
+            this.contacts[this.indexOfContact].isActive = !this.contacts[this.indexOfContact].isActive;
         }
-
-
-
 
     }
 

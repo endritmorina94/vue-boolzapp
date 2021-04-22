@@ -64,7 +64,7 @@
                         <section class="user-contacts">
                             <ul class="contacts-list">
 
-                                <li v-for="(contact, index) in contacts" @click="giveIndex(index)" v-if="contact.visible == true" class="aligner">
+                                <li v-for="(contact, index) in contacts" @click="giveIndex(index); addClassActive()" v-if="contact.visible == true" class="aligner" :class="{active : contacts[index].isActive}">
                                     <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar">
                                     <h3>{{ contact.name }}</h3>
                                     <span>{{contact.messages[contact.messages.length - 1].date}}</span>

@@ -36,14 +36,7 @@ i {
     width: 100%;
     height: 95%;
     background-color: white;
-}
-
-/* SEZIONE CONTATTI */
-.contacts {
-    width: 33%;
-    height: 100%;
-    border-right: 1px solid  rgb(205, 205, 205);
-    float: left;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 }
 
 /* HEADER */
@@ -80,6 +73,14 @@ header {
     color: #6A7376;
 }
 /* FINE HEADER */
+
+/* SEZIONE CONTATTI */
+.contacts {
+    width: 33%;
+    height: 100%;
+    border-right: 1px solid  rgb(205, 205, 205);
+    float: left;
+}
 
 /* INIZIO NOTIFICATION SETUP */
 .notifications {
@@ -161,6 +162,14 @@ main {
     background-color: #f1f1f1;
 }
 
+.contacts li:active {
+    background-color: #E0E0E0;
+}
+
+.active {
+    background-color: #E0E0E0;
+}
+
 .contacts li:not(:last-child) {
     border-bottom: 1px solid rgb(233, 233, 233);
 }
@@ -179,6 +188,7 @@ main {
     font-size: 12px;
 }
 /* FINE MAIN */
+/* FINE SEZIONE CONTATTI */
 
 /* CHAT */
 .chat {
