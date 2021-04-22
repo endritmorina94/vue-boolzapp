@@ -113,10 +113,10 @@
                             </p>
                         </div>
 
-                        <div class="delivered-msg">
+                        <div v-for="message in userMessages" class="delivered-msg">
                             <p>
-                                Ciaone
-                                <span>11:20</span>
+                                {{ message.text }}
+                                <span>{{ message.date }}</span>
                             </p>
                         </div>
 
@@ -127,7 +127,7 @@
                     <section class="messenger aligner">
 
                         <i class="far fa-smile"></i>
-                        <input type="text" placeholder="Scrivi un messaggio">
+                        <input v-model="newMessage"@keyup.enter="addMsg(newMessage)" type="text" placeholder="Scrivi un messaggio">
                         <i class="fas fa-microphone"></i>
 
                     </section>

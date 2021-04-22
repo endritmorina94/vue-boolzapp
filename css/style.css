@@ -193,6 +193,8 @@ main {
     display: inline-block;
     padding: 10px;
     border-radius: 5px;
+    max-width: 80%;
+    white-space: normal;
 }
 
 .received-msg p {
@@ -207,7 +209,6 @@ main {
     background-color: #D5F9BA;
 }
 
-
 .chat main p span {
     position: relative;
     left: 5px;
@@ -215,8 +216,6 @@ main {
     font-size: 10px;
     color: #B6B9BC;
 }
-
-
 /* FINE CHAT */
 
 /* INIZIO MESSENGER */

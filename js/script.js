@@ -90,14 +90,42 @@ var app = new Vue({
         	},
         ],
 
+        //Creo un index base che mi servirà per indicare le informazioni di quale
+        //contatto mostrare nella sezione Chat
         indexOfContact: 0,
+
+        //Creo un array vuoto per immagazzinare i messaggi dell'utente
+        userMessages: [],
+
+        //Creo una stringa vuota che poi assumerà la forma del messaggio digitato dall'utente
+        newMessage: ""
 
     },
 
     methods: {
 
+        //Creo una funzione che al click del contatto, nella lista contatti
+        //assegnerà l'index del contatto cliccato alla variabile indexOfContact
+        //index ==> index del contatto cliccato
         giveIndex(index) {
             this.indexOfContact = index;
+        },
+
+        //Creo una funziona che al click del bottone enter aggiungerà un oggetto all'array
+        //userMessages con il messaggio dell'utente sotto la key text
+        //e anche la digitata sotto la key date
+        //messaggio ==> è il messaggio che viene scritto dall'utente
+        addMsg(messaggio) {
+
+            const msgObj = {
+                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                text: messaggio,
+            }
+
+            this.userMessages.push(msgObj)
+
+            this.newMessage = "";
+
         }
 
     }
