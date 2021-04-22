@@ -117,16 +117,37 @@ var app = new Vue({
         //messaggio ==> è il messaggio che viene scritto dall'utente
         addMsg(messaggio) {
 
+            //Creo l'oggetto
             const msgObj = {
                 date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
                 text: messaggio,
+                status: 'sent'
             }
 
+            //Lo pusho nell'array
             this.userMessages.push(msgObj)
 
+            //Resetto l'input
             this.newMessage = "";
 
+            setTimeout(function() {
+
+                const risposta = {
+                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                    text: "ok",
+                    status: 'sent'
+                }
+
+                this.contacts[this.indexOfContact].messages.push(risposta);
+
+            }, 1000);
+
+            console.log(this.contacts[this.indexOfContact].messages);
+
+
         }
+
+
 
     }
 
