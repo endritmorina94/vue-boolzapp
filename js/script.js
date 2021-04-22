@@ -8,7 +8,7 @@ var app = new Vue({
         	{
         		name: 'Michele',
         		avatar: '_1',
-                isActive: false,
+                isActive: true,
         		visible: true,
         		messages: [
         			{
@@ -85,7 +85,7 @@ var app = new Vue({
         	},
         	{
         		name: 'Luisa',
-        		avatar: '_4',
+        		avatar: '_6',
                 isActive: false,
         		visible: true,
         		messages: [
@@ -189,7 +189,7 @@ var app = new Vue({
         //Creo una funzione che al click sul messaggio, mostra una dropdown, nascondendo quelle già aperte
         //indice ==> è l'index del messaggio che mi viene passato dall'html
         showDropdown(indice) {
-            
+
             const thisMessage = this.contacts[this.indexOfContact].messages[indice];
 
             if (thisMessage.dropdown == false) {
