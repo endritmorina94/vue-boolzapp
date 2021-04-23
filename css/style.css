@@ -158,16 +158,12 @@ main {
     position: relative;
 }
 
-.contacts li:hover {
-    background-color: #f1f1f1;
-}
-
-.contacts li:active {
-    background-color: #E0E0E0;
+.contacts li:hover:not(.contacts li.active) {
+    background-color: #F8F8F8;
 }
 
 .active {
-    background-color: #E0E0E0;
+    background-color: #EAEAEA;
 }
 
 .contacts li:not(:last-child) {
@@ -202,38 +198,42 @@ main {
     height: calc(100% - 140px);
     background-image: url("../img/mine.jpg");
     overflow-y: auto;
+    overflow-x: hidden;
     padding: 30px 60px;
 }
 
 .chat main .msg {
-    margin-bottom: 5px;
     position: relative;
 }
 
 .chat main p {
     display: inline-block;
-    padding: 10px;
+    padding: 10px 7px 10px 10px;
     border-radius: 5px;
     max-width: 80%;
     cursor: pointer;
+    overflow: hidden;
+    word-wrap: break-word;
+    position: relative;
+
 }
 
 .received-msg p {
     background-color: white;
 }
 
-.delivered-msg {
+.sent-msg {
     text-align: right;
 }
 
-.delivered-msg p {
+.sent-msg p {
     background-color: #D5F9BA;
+    text-align: left;
 }
 
-.chat main p span {
-    position: relative;
-    left: 5px;
-    top: 8px;
+.chat main p .time {
+    float: right;
+    margin: 16px 0 -5px 16px;
     font-size: 10px;
     color: #B6B9BC;
 }
@@ -248,12 +248,12 @@ main {
     z-index: 1;
 }
 
-.dropdown li{
+.dropdown li {
     padding: 10px;
     cursor: pointer;
 }
 
-.dropdown li:hover{
+.dropdown li:hover {
     background-color: lightgrey;
 }
 

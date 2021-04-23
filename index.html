@@ -106,11 +106,11 @@
                     <!-- Inizio Chat Content -->
                     <main>
 
-                        <div v-for="(message, index) in contacts[indexOfContact].messages" class="msg" :class="(message.status == 'sent') ? 'delivered-msg' : 'received-msg'">
+                        <div v-for="(message, index) in contacts[indexOfContact].messages" class="msg" :class="`${contacts[indexOfContact].messages[index].status}-msg`">
                             <p @click="showDropdown(index)">
-                                {{ message.text }}
+                                <span>{{ message.text }}</span>
 
-                                <span>{{ message.date }}</span>
+                                <span class="time">{{ message.date }}</span>
 
                             </p>
 
