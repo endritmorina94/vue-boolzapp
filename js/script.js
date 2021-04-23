@@ -147,7 +147,8 @@ var app = new Vue({
             const msgObj = {
                 date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
                 text: this.newMessage,
-                status: 'sent'
+                status: 'sent',
+                dropdown: false
             };
 
             //Lo pusho nell'array
@@ -164,7 +165,8 @@ var app = new Vue({
                 const risposta = {
                     date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
                     text: "ok",
-                    status: 'received'
+                    status: 'received',
+                    dropdown: false
                 };
 
                 messaggi.push(risposta);

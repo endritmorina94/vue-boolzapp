@@ -8,6 +8,8 @@
 /* COMMON */
 body {
     background: linear-gradient(180deg, rgba(0,149,136,1) 15%, rgba(219,219,209,1) 15%);
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 400;
 }
 
 .aligner {
@@ -22,7 +24,7 @@ img {
 
 i {
     color: #B1B1B1;
-    font-size: 18px;
+    font-size: 17.5px;
 }
 
 /* CONTAINER */
@@ -74,7 +76,7 @@ header {
 
 .user-info p{
     color: #6A7376;
-    font-size: 15px;
+    font-size: 14px;
 }
 /* FINE HEADER */
 
@@ -236,6 +238,8 @@ main {
     border-radius: 5px;
     max-width: 80%;
     text-align: left;
+    font-weight: 500;
+    font-size: 15px;
     cursor: pointer;
     overflow: hidden;
     word-wrap: break-word;
@@ -264,11 +268,11 @@ main {
 
 main p .arrow {
     position: absolute;
-    transition: right 0.5s;
+    transition: right 0.3s;
 }
 
 main p:hover .arrow {
-    right: 12px;
+    right: 7px;
 }
 
 .hide {
@@ -276,7 +280,7 @@ main p:hover .arrow {
 }
 
 .right {
-    right: 12px;
+    right: 7px;
 }
 
 main p .arrow i {
@@ -325,6 +329,9 @@ main p .arrow i {
     border-radius: 5px;
     border: 0;
     padding: 15px;
+    outline: 0;
+    font-weight: 500;
+    font-size: 15px;
 }
 
 .messenger i {
