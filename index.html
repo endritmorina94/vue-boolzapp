@@ -39,7 +39,7 @@
                 <!-- Fine Header Contatti -->
 
                 <!-- Inizio Sezione Setup delle Notifiche -->
-                <section class="notifications aligner">
+                <section class="notifications aligner" :class="hidingClass">
 
                     <span class="bell">
                         <i class="fas fa-bell-slash"></i>
@@ -47,7 +47,7 @@
 
                     <div class="notifications-set">
                         <p>Ricevi notifiche di nuovi messaggi</p>
-                        <a href="#">Attiva notifiche desktop</a>
+                        <a href="#" @click="hideThis()">Attiva notifiche desktop</a>
                     </div>
 
                 </section>
@@ -56,31 +56,35 @@
                 <!-- Inizio Main -->
                 <main>
 
-                    <!-- Inizio Sezione Search -->
-                    <section class="search">
-                        <div class="input-container aligner">
-                            <i class="fas fa-search"></i>
-                            <input v-model="contactToFind" @keyup="find(contactToFind)" type="text" name="" value="" placeholder="Cerca o inizia una nuova chat">
-                        </div>
-                    </section>
-                    <!-- Fine Sezione Search -->
+                    <div class="contacts-container">
 
-                    <!-- Inizio Lista Contatti -->
-                    <section class="user-contacts">
-                        <ul class="contacts-list">
+                        <!-- Inizio Sezione Search -->
+                        <section class="search">
+                            <div class="input-container aligner">
+                                <i class="fas fa-search"></i>
+                                <input v-model="contactToFind" @keyup="find(contactToFind)" type="text" name="" value="" placeholder="Cerca o inizia una nuova chat">
+                            </div>
+                        </section>
+                        <!-- Fine Sezione Search -->
 
-                            <li v-for="(contact, index) in contacts" @click="giveIndex(index); addClassActive()" v-if="contact.visible == true" class="aligner" :class="{active : contacts[index].isActive}">
-                                <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar">
-                                <div class="contact-info">
-                                    <h3>{{ contact.name }}</h3>
-                                    <span class="last-msg">{{contact.messages[contact.messages.length - 1].text}}</span>
-                                </div>
-                                <span class="time">{{contact.messages[contact.messages.length - 1].date}}</span>
-                            </li>
+                        <!-- Inizio Lista Contatti -->
+                        <section class="user-contacts">
+                            <ul class="contacts-list">
 
-                        </ul>
-                    </section>
-                    <!-- Fine Lista Contatti -->
+                                <li v-for="(contact, index) in contacts" @click="giveIndex(index); addClassActive()" v-if="contact.visible == true" class="aligner" :class="{active : contacts[index].isActive}">
+                                    <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar">
+                                    <div class="contact-info">
+                                        <h3>{{ contact.name }}</h3>
+                                        <span class="last-msg">{{contact.messages[contact.messages.length - 1].text}}</span>
+                                    </div>
+                                    <span class="time">{{contact.messages[contact.messages.length - 1].date}}</span>
+                                </li>
+
+                            </ul>
+                        </section>
+                        <!-- Fine Lista Contatti -->
+
+                    </div>
 
                 </main>
                 <!-- Fine Main -->

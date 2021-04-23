@@ -27,6 +27,10 @@ i {
     font-size: 17.5px;
 }
 
+.hide-element {
+    display: none;
+}
+
 /* CONTAINER */
 .container {
     max-width: 80%;
@@ -86,6 +90,8 @@ header {
     height: 100%;
     border-right: 1px solid  rgb(205, 205, 205);
     float: left;
+    display: flex;
+    flex-direction: column;
 }
 
 /* INIZIO NOTIFICATION SETUP */
@@ -117,8 +123,15 @@ header {
 /* FINE NOTIFICATION SETUP */
 
 /* INIZIO MAIN */
-main {
-    height: calc(100% - 150px);
+.contacts main {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.contacts .contacts-container {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 /* SEARCH */
@@ -148,14 +161,14 @@ main {
 
 /* INIZIO LISTA CONTATTI */
 .user-contacts {
-    height: calc(100% - 50px);
+    flex-grow: 1;
+    overflow-y: auto;
 }
 
 .contacts-list {
     height: 100%;
     list-style-type: none;
     padding: 5px 0;
-    overflow-y: auto;
 }
 
 .contacts li {
@@ -246,6 +259,30 @@ main {
     position: relative;
     box-shadow: 0 1px 1px rgba(0, 0, 0, 0.2);
     margin-bottom: 4px;
+}
+
+.msg-cloud::after {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    content: '';
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+}
+
+.received-msg .msg-cloud::after {
+    left: -9px;
+    border-bottom: 10px solid white;
+    transform:rotate(180deg);
+    filter: drop-shadow(2px 0 1px rgba(0, 0, 0, 0.05));
+}
+
+.sent-msg .msg-cloud::after {
+    right: -9px;
+    border-bottom: 10px solid #D5F9BA;
+    transform:rotate(180deg);
+    filter: drop-shadow(-2px 0 1px rgba(0, 0, 0, 0.05));
 }
 
 .received-msg .msg-cloud {

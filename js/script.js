@@ -116,7 +116,9 @@ var app = new Vue({
         newMessage: "",
 
         //Creo una variabile vuota che assuemerà la forma della ricerca effettuata dall'utente
-        contactToFind: ""
+        contactToFind: "",
+
+        hidingClass: ""
 
     },
 
@@ -233,10 +235,21 @@ var app = new Vue({
             this.contacts[this.indexOfContact].isActive = !this.contacts[this.indexOfContact].isActive;
         },
 
+        //Questa funzione cancella tutti i dropdown aperti nella pagina
         cleanDrops() {
+
             this.contacts[this.indexOfContact].messages.forEach((element) => {
                 element.dropdown = false;
             });
+
+        },
+
+        //Questa funzione cambia il valore della variabile hidingClass,
+        //con il nome della classe hide-element, verrà usata per nascondere elementi html
+        hideThis() {
+
+            this.hidingClass = "hide-element";
+
         }
 
     }
