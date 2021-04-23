@@ -7,7 +7,8 @@
 
 /* COMMON */
 body {
-    background: linear-gradient(180deg, rgba(0,149,136,1) 15%, rgba(219,219,209,1) 15%);
+    background: rgb(0,153,136);
+    background: linear-gradient(180deg, rgba(0,153,136,1) 0%, rgba(0,149,136,1) 15%, rgba(219,219,209,1) 15%, rgba(209,218,219,1) 100%);
     font-family: 'Quicksand', sans-serif;
     font-weight: 400;
 }
@@ -25,16 +26,38 @@ img {
 i {
     color: #B1B1B1;
     font-size: 17.5px;
+    cursor: pointer;
 }
 
 .hide-element {
     display: none;
 }
 
+/* SCROLLBAR COSTUMIZATION */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background-color: rgba(179, 176, 176, 0.8);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #888;
+}
+/* FINE SCROLLBAR COSTUMIZATION */
+
 /* CONTAINER */
 .container {
     max-width: 80%;
-    min-width: 760px;
+    min-width: 777px;
     height: 100vh;
     min-height: 295px;
     margin: auto;
@@ -132,20 +155,24 @@ header {
     height: 100%;
     display: flex;
     flex-direction: column;
+
 }
 
 /* SEARCH */
 .search {
     height: 50px;
-    padding: 5px;
+    padding: 8px;
+    background-color: #F3F3F3;
 }
 
 .search .input-container {
     width: 100%;
     font-size: 20px;
     border: 1px solid rgb(233, 233, 233);
+    border-radius: 5px;
     padding: 10px 20px;
     justify-content: space-between;
+    background-color: white;
 }
 
 .search input {
@@ -168,7 +195,6 @@ header {
 .contacts-list {
     height: 100%;
     list-style-type: none;
-    padding: 5px 0;
 }
 
 .contacts li {
@@ -178,7 +204,7 @@ header {
 }
 
 .contacts li:hover:not(.contacts li.active) {
-    background-color: #F8F8F8;
+    background-color: #F3F3F3;
 }
 
 .active {
@@ -392,14 +418,6 @@ main .arrow i {
 
     .app {
         height: 100%;
-    }
-
-    .contacts {
-        width: 35%;
-    }
-
-    .chat {
-        width: 65%;
     }
 
 }
