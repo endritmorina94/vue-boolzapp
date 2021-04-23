@@ -109,14 +109,21 @@
                 <!-- Fine Chat Header -->
 
                 <!-- Inizio Chat Content -->
-                <main>
+                <main @click="cleanDrops()">
 
                     <div v-for="(message, index) in contacts[indexOfContact].messages"
                     class="msg"
                     :class="`${contacts[indexOfContact].messages[index].status}-msg`">
-                        <p @click="showDropdown(index)">
+                        <p @click="cleanDrops()">
 
                             <span>{{ message.text }}</span>
+
+                            <span class="arrow hide"
+                            :class="{ right : (contacts[indexOfContact].messages[index].dropdown) }"
+                            @click.stop="cleanDrops()"
+                            @click="showDropdown(index)">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
 
                             <span class="time">{{ message.date }}</span>
 

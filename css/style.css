@@ -22,13 +22,13 @@ img {
 
 i {
     color: #B1B1B1;
-    font-size: 17px;
+    font-size: 18px;
 }
 
 /* CONTAINER */
 .container {
     max-width: 80%;
-    min-width: 747px;
+    min-width: 760px;
     height: 100vh;
     min-height: 295px;
     margin: auto;
@@ -80,7 +80,7 @@ header {
 
 /* SEZIONE CONTATTI */
 .contacts {
-    width: 33%;
+    width: 35%;
     height: 100%;
     border-right: 1px solid  rgb(205, 205, 205);
     float: left;
@@ -213,7 +213,7 @@ main {
 
 .chat {
     float: left;
-    width: 67%;
+    width: 65%;
     height: 100%;
 }
 
@@ -262,12 +262,33 @@ main {
     color: #B6B9BC;
 }
 
+main p .arrow {
+    position: absolute;
+    transition: right 0.5s;
+}
+
+main p:hover .arrow {
+    right: 12px;
+}
+
+.hide {
+    right: -12px;
+}
+
+.right {
+    right: 12px;
+}
+
+main p .arrow i {
+    font-size: 13px;
+}
+
 .dropdown {
     position: absolute;
-    top: 90%;
+    top: 80%;
     list-style-type: none;
     background-color: white;
-    box-shadow: -2px 1px 4px rgba(0, 0, 0, 0.2);
+    box-shadow: -1px 1px 4px rgba(0, 0, 0, 0.3);
     text-align: left;
     z-index: 1;
 }
@@ -282,11 +303,11 @@ main {
 }
 
 .received-msg .dropdown {
-    left: 10%;
+    left: 12%;
 }
 
 .sent-msg .dropdown {
-    left: 80%;
+    right: 2%;
 }
 /* FINE CHAT */
 
@@ -329,6 +350,10 @@ main {
 
     .chat {
         width: 65%;
+    }
+
+    .received-msg .dropdown {
+        left: 11%;
     }
 
 }

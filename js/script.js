@@ -133,7 +133,7 @@ var app = new Vue({
             this.contacts[this.indexOfContact].messages.forEach((element) => {
                 element.dropdown = false;
             });
-            
+
         },
 
         //Creo una funzione che al click del bottone enter aggiungerà un oggetto all'array
@@ -234,6 +234,12 @@ var app = new Vue({
 
             //Togglo la classe active al contatto selezionato
             this.contacts[this.indexOfContact].isActive = !this.contacts[this.indexOfContact].isActive;
+        },
+
+        cleanDrops() {
+            this.contacts[this.indexOfContact].messages.forEach((element) => {
+                element.dropdown = false;
+            });
         }
 
     }
