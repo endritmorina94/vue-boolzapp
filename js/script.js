@@ -180,7 +180,7 @@ var app = new Vue({
         //Creo un index base che mi servirà per indicare le informazioni di quale
         //contatto mostrare nella sezione Chat
         indexOfContact: 0,
-        //
+
         // //Creo un array vuoto per immagazzinare i messaggi dell'utente
         // userMessages: [],
 
@@ -190,7 +190,16 @@ var app = new Vue({
         //Creo una variabile vuota che assuemerà la forma della ricerca effettuata dall'utente
         contactToFind: "",
 
-        hidingClass: ""
+        //Creo una variabile che darà il nome alla classe per nascondere gli elementi
+        hidingClass: "",
+
+        randomAnswers: [
+            "si, poi passo a prenderti",
+            "ok, a dopo zingaro",
+            "no senti stasera proprio non posso",
+            "finisco la warzonata e arrivo"
+        ]
+
 
     },
 
@@ -231,9 +240,11 @@ var app = new Vue({
             //nell'arrey dei messaggi
             setTimeout(() => {
 
+                const randomNumb = Math.floor(Math.random() * 4);
+
                 const risposta = {
                     date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
-                    text: "ok",
+                    text: this.randomAnswers[randomNumb],
                     status: 'received',
                     dropdown: false
                 };
@@ -321,6 +332,31 @@ var app = new Vue({
         hideThis() {
 
             this.hidingClass = "hide-element";
+
+        },
+
+        checkDropwdown(msgIndex) {
+
+            return this.contacts[this.indexOfContact].messages[msgIndex].dropdown;
+
+        },
+
+        checkNextMsg(msgIndex){
+            if (msgIndex > this.contacts[this.indexOfContact].messages.length - 2){
+
+                return false;
+
+            } else {
+
+                return (this.contacts[this.indexOfContact].messages[msgIndex].status != this.contacts[this.indexOfContact].messages[msgIndex + 1].status);
+
+            }
+
+        },
+
+        checkMsgKind(msgIndex){
+
+            return this.contacts[this.indexOfContact].messages[msgIndex].status + "-msg";
 
         }
 

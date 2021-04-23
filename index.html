@@ -120,13 +120,14 @@
 
                     <div v-for="(message, index) in contacts[indexOfContact].messages"
                     class="msg"
-                    :class="`${contacts[indexOfContact].messages[index].status}-msg`">
+                    :class="[checkMsgKind(index), {distance : checkNextMsg(index)}]">
+
                         <div class="msg-cloud">
 
                             <span>{{ message.text }}</span>
 
                             <span class="arrow hide"
-                            :class="{ right : (contacts[indexOfContact].messages[index].dropdown) }"
+                            :class="{ right : checkDropwdown(index) }"
                             @click.stop="cleanDrops()"
                             @click="showDropdown(index)">
                                 <i class="fas fa-chevron-down"></i>
@@ -150,8 +151,6 @@
                             <!-- Fine Dropdown Menu -->
 
                         </div>
-
-
 
                     </div>
 

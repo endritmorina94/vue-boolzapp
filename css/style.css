@@ -292,20 +292,20 @@ header {
     width: 0;
     height: 0;
     content: '';
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
 }
 
 .received-msg .msg-cloud::after {
-    left: -9px;
-    border-bottom: 10px solid white;
+    left: -6px;
+    border-bottom: 9px solid white;
     transform:rotate(180deg);
     filter: drop-shadow(2px 0 1px rgba(0, 0, 0, 0.05));
 }
 
 .sent-msg .msg-cloud::after {
-    right: -9px;
-    border-bottom: 10px solid #D5F9BA;
+    right: -6px;
+    border-bottom: 9px solid #D5F9BA;
     transform:rotate(180deg);
     filter: drop-shadow(-2px 0 1px rgba(0, 0, 0, 0.05));
 }
@@ -320,6 +320,10 @@ header {
 
 .sent-msg .msg-cloud {
     background-color: #D5F9BA;
+}
+
+.distance {
+    margin-bottom: 8px;
 }
 
 .chat main .msg-cloud .time {
@@ -342,7 +346,6 @@ main .msg-cloud:hover .arrow {
 
 .hide {
     opacity: 0;
-
     right: -15px;
 }
 
