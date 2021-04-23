@@ -17,7 +17,7 @@
 
     <div class="container aligner">
 
-        <div id="root" class="app">
+        <div id="root" class="app" @click="cleanDrops()">
             <!-- Inizio Sezione Contatti -->
             <section class="contacts">
 
@@ -112,12 +112,12 @@
                 <!-- Fine Chat Header -->
 
                 <!-- Inizio Chat Content -->
-                <main @click="cleanDrops()">
+                <main>
 
                     <div v-for="(message, index) in contacts[indexOfContact].messages"
                     class="msg"
                     :class="`${contacts[indexOfContact].messages[index].status}-msg`">
-                        <p @click="cleanDrops()">
+                        <div class="msg-cloud">
 
                             <span>{{ message.text }}</span>
 
@@ -130,22 +130,24 @@
 
                             <span class="time">{{ message.date }}</span>
 
-                        </p>
+                            <!-- Dropdown Menu -->
+                            <ul v-if="contacts[indexOfContact].messages[index].dropdown"
+                            class="dropdown">
 
-                        <!-- Dropdown Menu -->
-                        <ul v-if="contacts[indexOfContact].messages[index].dropdown"
-                        class="dropdown">
+                                <li>
+                                    Message info
+                                </li>
 
-                            <li>
-                                Message info
-                            </li>
+                                <li @click="removeMsg(index)">
+                                    Delete Message
+                                </li>
 
-                            <li @click="removeMsg(index)">
-                                Delete Message
-                            </li>
+                            </ul>
+                            <!-- Fine Dropdown Menu -->
 
-                        </ul>
-                        <!-- Fine Dropdown Menu -->
+                        </div>
+
+
 
                     </div>
 

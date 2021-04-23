@@ -129,11 +129,6 @@ var app = new Vue({
 
             this.indexOfContact = index;
 
-            //Chiudo possibili dropdown lasciate aperte
-            this.contacts[this.indexOfContact].messages.forEach((element) => {
-                element.dropdown = false;
-            });
-
         },
 
         //Creo una funzione che al click del bottone enter aggiungerà un oggetto all'array
