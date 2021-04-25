@@ -17,9 +17,9 @@
 
     <div class="container aligner">
 
-        <div id="root" class="app" @click="cleanDrops()">
+        <div id="root" class="app">
             <!-- Inizio Sezione Contatti -->
-            <section class="contacts">
+            <section class="contacts" @click="cleanDrops()">
 
                 <!-- Inizio Header Contatti -->
                 <header class="aligner">
@@ -74,10 +74,13 @@
                                 <li v-for="(contact, index) in contacts" @click="giveIndex(index); addClassActive()" v-if="contact.visible == true" class="aligner" :class="{active : contacts[index].isActive}">
                                     <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar">
                                     <div class="contact-info">
-                                        <h3>{{ contact.name }}</h3>
-                                        <span class="last-msg">{{contact.messages[contact.messages.length - 1].text}}</span>
+                                        <h3>{{contact.name}}</h3>
+                                        <span class="last-msg">
+                                            {{contact.messages[contact.messages.length - 1].text}}
+                                        </span>
                                     </div>
-                                    <span class="time">{{contact.messages[contact.messages.length - 1].date}}</span>
+                                    <span class="time">{{contact.messages[contact.messages.length - 1].date}}
+                                    </span>
                                 </li>
 
                             </ul>
@@ -96,13 +99,17 @@
             <section class="chat">
 
                 <!-- Inizio Chat Header -->
-                <header class="aligner">
+                <header class="aligner" @click="cleanDrops()">
 
                     <div class="user">
                         <img :src="`img/avatar${contacts[indexOfContact].avatar}.jpg`" alt="Avatar User">
                         <div class="user-info">
                             <h3>{{ contacts[indexOfContact].name }}</h3>
-                            <p>Ultimo accesso oggi {{contacts[indexOfContact].messages[contacts[indexOfContact].messages.length - 1].date}}</p>
+                            <p>Ultimo accesso oggi
+                                <span v-if="contacts[indexOfContact].messages.length > 0">
+                                    {{contacts[indexOfContact].messages[contacts[indexOfContact].messages.length - 1].date}}
+                                </span>
+                            </p>
                         </div>
                     </div>
 
@@ -116,19 +123,20 @@
                 <!-- Fine Chat Header -->
 
                 <!-- Inizio Chat Content -->
-                <main>
+                <main id="messageDisplayer">
 
-                    <div v-for="(message, index) in contacts[indexOfContact].messages"
+                    <div
+                    v-for="(message, index) in contacts[indexOfContact].messages"
                     class="msg"
                     :class="[checkMsgKind(index), {distance : checkNextMsg(index)}]">
 
-                        <div class="msg-cloud">
+                        <div class="msg-cloud"
+                        :class="{first : checkIfFirst(index)}">
 
                             <span>{{ message.text }}</span>
 
                             <span class="arrow hide"
                             :class="{ right : checkDropwdown(index) }"
-                            @click.stop="cleanDrops()"
                             @click="showDropdown(index)">
                                 <i class="fas fa-chevron-down"></i>
                             </span>
@@ -158,7 +166,7 @@
                 <!-- Fine Chat Content -->
 
                 <!-- Inizio Messenger -->
-                <section class="messenger aligner">
+                <section class="messenger aligner" @click="cleanDrops()">
 
                     <i class="far fa-smile"></i>
                     <input v-model="newMessage" @keyup.enter="addMsg()" type="text" placeholder="Scrivi un messaggio">

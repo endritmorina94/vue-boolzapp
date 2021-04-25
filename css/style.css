@@ -296,14 +296,14 @@ header {
     border-right: 6px solid transparent;
 }
 
-.received-msg .msg-cloud::after {
+.received-msg .msg-cloud.first::after {
     left: -6px;
     border-bottom: 9px solid white;
     transform:rotate(180deg);
     filter: drop-shadow(2px 0 1px rgba(0, 0, 0, 0.05));
 }
 
-.sent-msg .msg-cloud::after {
+.sent-msg .msg-cloud.first::after {
     right: -6px;
     border-bottom: 9px solid #D5F9BA;
     transform:rotate(180deg);

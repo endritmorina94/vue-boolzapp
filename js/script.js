@@ -181,9 +181,6 @@ var app = new Vue({
         //contatto mostrare nella sezione Chat
         indexOfContact: 0,
 
-        // //Creo un array vuoto per immagazzinare i messaggi dell'utente
-        // userMessages: [],
-
         //Creo una stringa vuota che poi assumerà la forma del messaggio digitato dall'utente
         newMessage: "",
 
@@ -200,7 +197,6 @@ var app = new Vue({
             "finisco la warzonata e arrivo"
         ]
 
-
     },
 
     methods: {
@@ -211,6 +207,13 @@ var app = new Vue({
         giveIndex(index) {
 
             this.indexOfContact = index;
+
+            // ATTENZIONE: DA RIVEDERE....
+            setTimeout(() => {
+
+                this.scrollToLast();
+
+            }, 0);
 
         },
 
@@ -235,6 +238,13 @@ var app = new Vue({
             //Resetto l'input
             this.newMessage = "";
 
+            //Faccio scrollare la finestra verso l'ultimo messaggio
+            setTimeout(() => {
+
+                this.scrollToLastSmooth();
+
+            }, 10);
+
             //Setto un timeout un secondo dopo l'invio del messaggio da parte
             //dell'utente, creerà un messaggio di risposta "ok" e lo pusherà
             //nell'arrey dei messaggi
@@ -250,6 +260,12 @@ var app = new Vue({
                 };
 
                 messaggi.push(risposta);
+
+                setTimeout(() => {
+
+                    this.scrollToLastSmooth();
+
+                }, 10);
 
             }, 1000);
 
@@ -335,13 +351,16 @@ var app = new Vue({
 
         },
 
+        //Questa funzione chiud ei dropdown al click
         checkDropwdown(msgIndex) {
 
             return this.contacts[this.indexOfContact].messages[msgIndex].dropdown;
 
         },
 
+        //Questa funzione controlla se il messaggio dopo è di tipo uguale o diverso
         checkNextMsg(msgIndex){
+
             if (msgIndex > this.contacts[this.indexOfContact].messages.length - 2){
 
                 return false;
@@ -354,10 +373,41 @@ var app = new Vue({
 
         },
 
+        //Questa funzione controlla se il messaggio è inziato o ricevuto, utilizzata per dare il nome ad una classe
         checkMsgKind(msgIndex){
 
             return this.contacts[this.indexOfContact].messages[msgIndex].status + "-msg";
 
+        },
+
+        //Questa funzione controlla se il messaggio è il primo del suo genere (ricevuti/inviati), utilizzata per aggiungere
+        //una classe che aumenta la distanza
+        checkIfFirst(msgIndex) {
+
+            if (msgIndex > 0){
+
+                if (this.contacts[this.indexOfContact].messages[msgIndex].status != this.contacts[this.indexOfContact].messages[msgIndex - 1].status){
+
+                    return true;
+                }
+
+            } else if (msgIndex == 0){
+
+                return true;
+            }
+
+        },
+
+        scrollToLast() {
+            let lastMessagesArray = document.getElementsByClassName('msg-cloud');
+            let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
+            lastMessage.scrollIntoView();
+        },
+
+        scrollToLastSmooth() {
+            let lastMessagesArray = document.getElementsByClassName('msg-cloud');
+            let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
+            lastMessage.scrollIntoView({behavior: 'smooth'});
         }
 
     }
