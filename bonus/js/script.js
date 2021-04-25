@@ -472,138 +472,147 @@ var app = new Vue({
         //e anche la data sotto la key date
         addMsg() {
 
-            const messaggi = this.contacts[this.indexOfContact].messages;
+            if (this.newMessage != "") {
 
-            const contatto = this.contacts[this.indexOfContact];
+                const messaggi = this.contacts[this.indexOfContact].messages;
 
-            //Creo l'oggetto
-            const msgObj = {
-                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
-                text: this.newMessage,
-                status: 'sent',
-                state: [
-                    {
-                        sent: true
-                    },
-                    {
-                        delivered: false
-                    },
-                    {
-                        seen: false
-                    }
-                ],
-                dropdown: false
-            };
+                const contatto = this.contacts[this.indexOfContact];
 
-            //Lo pusho nell'array
-            messaggi.push(msgObj);
+                //Creo l'oggetto
+                const msgObj = {
+                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                    text: this.newMessage,
+                    status: 'sent',
+                    state: [
+                        {
+                            sent: true
+                        },
+                        {
+                            delivered: false
+                        },
+                        {
+                            seen: false
+                        }
+                    ],
+                    dropdown: false
+                };
 
-            //Resetto l'input
-            this.newMessage = "";
+                //Lo pusho nell'array
+                messaggi.push(msgObj);
 
-            //Faccio scrollare la finestra verso l'ultimo messaggio
-            setTimeout(() => {
+                //Resetto l'input
+                this.newMessage = "";
 
-                this.scrollToLastSmooth();
+                //Porto il contatto in cima alla lista dei contatti
+                this.contacts.splice(0, 0, this.contacts.splice(this.contacts.indexOf(contatto), 1)[0]);
 
-            }, 0);
+                this.indexOfContact = 0;
 
-
-            //Setto un timeout che cambia l'icona del messaggio da inviato a ricevuto 2 secondi dopo l'invio
-            setTimeout(() => {
-
-                msgObj.state[0].sent = false;
-                msgObj.state[1].delivered = true;
-
-            }, 2000);
-
-            // METTERE MATH RANDOM.
-            const tempoRandom = 6000;
-
-            //Setto un timeout che in un range tra 10 e 60 dopo l'invio del messaggio da parte
-            //dell'utente, cambierà prima l'icona di stato del messeggio in SEEN(letto) e
-            //creerà un messaggio di risposta random pushandolo nell'arrey dei messaggi
-            setTimeout(() => {
-
-                msgObj.state[2].seen = true;
-
+                //Faccio scrollare la finestra verso l'ultimo messaggio
                 setTimeout(() => {
 
-                    function randomNumb(arrayLength) {
-                        return Math.floor(Math.random() * arrayLength);
-                    };
+                    this.scrollToLastSmooth();
 
-                    let risposta = "";
+                }, 10);
 
-                    switch (contatto.name) {
-                        case "Vittorio S.":
-                            risposta = {
-                                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
-                                text: this.vitRandomAnswers[randomNumb(this.vitRandomAnswers.length)],
-                                status: 'received',
-                                dropdown: false
-                            }
 
-                            break;
+                //Setto un timeout che cambia l'icona del messaggio da inviato a ricevuto 2 secondi dopo l'invio
+                setTimeout(() => {
 
-                        case "Angelo Pintus":
-                            risposta = {
-                                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
-                                text: "HAI CACATO?",
-                                status: 'received',
-                                dropdown: false
-                            }
+                    msgObj.state[0].sent = false;
+                    msgObj.state[1].delivered = true;
 
-                            break;
+                }, 2000);
 
-                        case "Aziz Kebabbaro":
-                            risposta = {
-                                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
-                                text: this.azizRandomAnswers[randomNumb(this.azizRandomAnswers.length)],
-                                status: 'received',
-                                dropdown: false
-                            }
+                // METTERE MATH RANDOM.
+                const tempoRandom = 6000;
 
-                            break;
+                //Setto un timeout che in un range tra 10 e 60 dopo l'invio del messaggio da parte
+                //dell'utente, cambierà prima l'icona di stato del messeggio in SEEN(letto) e
+                //creerà un messaggio di risposta random pushandolo nell'arrey dei messaggi
+                setTimeout(() => {
 
-                        case "Elio":
-                            risposta = {
-                                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
-                                text: this.elioRandomAnswers[randomNumb(this.elioRandomAnswers.length)],
-                                status: 'received',
-                                dropdown: false
-                            }
+                    msgObj.state[2].seen = true;
 
-                            break;
-
-                        default:
-
-                            risposta = {
-                                date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
-                                text: this.randomAnswers[randomNumb(this.randomAnswers.length)],
-                                status: 'received',
-                                dropdown: false
-                            }
-
-                    }
-
-                    messaggi.push(risposta);
-
-                    this.contacts.splice(0, 0, this.contacts.splice(this.contacts.indexOf(contatto), 1)[0]);
-
-                    // Faccio scrollare la finestra verso l'ultimo messaggio
                     setTimeout(() => {
 
-                        this.scrollToLastSmooth();
+                        function randomNumb(arrayLength) {
+                            return Math.floor(Math.random() * arrayLength);
+                        };
 
-                    }, 10);
+                        let risposta = "";
 
-                    contatto.newMessage.numNewMsg += 1;
-                    contatto.newMessage.newMsg = true;
+                        switch (contatto.name) {
+                            case "Vittorio S.":
+                                risposta = {
+                                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                                    text: this.vitRandomAnswers[randomNumb(this.vitRandomAnswers.length)],
+                                    status: 'received',
+                                    dropdown: false
+                                }
 
-                }, 4000);
+                                break;
 
-            }, tempoRandom);
+                            case "Angelo Pintus":
+                                risposta = {
+                                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                                    text: "HAI CACATO?",
+                                    status: 'received',
+                                    dropdown: false
+                                }
+
+                                break;
+
+                            case "Aziz Kebabbaro":
+                                risposta = {
+                                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                                    text: this.azizRandomAnswers[randomNumb(this.azizRandomAnswers.length)],
+                                    status: 'received',
+                                    dropdown: false
+                                }
+
+                                break;
+
+                            case "Elio":
+                                risposta = {
+                                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                                    text: this.elioRandomAnswers[randomNumb(this.elioRandomAnswers.length)],
+                                    status: 'received',
+                                    dropdown: false
+                                }
+
+                                break;
+
+                            default:
+
+                                risposta = {
+                                    date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
+                                    text: this.randomAnswers[randomNumb(this.randomAnswers.length)],
+                                    status: 'received',
+                                    dropdown: false
+                                }
+
+                        }
+
+                        messaggi.push(risposta);
+
+                        this.contacts.splice(0, 0, this.contacts.splice(this.contacts.indexOf(contatto), 1)[0]);
+
+                        // Faccio scrollare la finestra verso l'ultimo messaggio
+                        setTimeout(() => {
+
+                            this.scrollToLastSmooth();
+
+                        }, 10);
+
+                        contatto.newMessage.numNewMsg += 1;
+                        contatto.newMessage.newMsg = true;
+
+                    }, 4000);
+
+                }, tempoRandom);
+
+            }
 
         },
 
@@ -755,7 +764,12 @@ var app = new Vue({
             let lastMessagesArray = document.getElementsByClassName('msg-cloud');
             let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
             lastMessage.scrollIntoView({behavior: 'smooth'});
-        }
+        },
+
+        //Questa funzione cancella una chat
+        deleteChat() {
+            this.contacts.splice(this.indexOfContact, 1);
+        },
 
     }
 
