@@ -26,7 +26,9 @@
 
                     <div class="user">
                         <img :src="`img/avatar${user.avatar}.jpg`" alt="Avatar User">
-                        <h3>{{ user.name }}</h3>
+                        <div class="user-info">
+                            <h3>{{ user.name }}</h3>
+                        </div>
                     </div>
 
                     <div class="icons">
@@ -231,7 +233,98 @@
             <!-- Fine Sezione Chat -->
 
             <section v-if="(contactInfoWindow == true)" class="contact-info-window">
-                <div></div>
+
+                <header class="aligner">
+
+                    <i class="fas fa-times" @click="contactInfoWindow = false"></i>
+
+                    <h3>Info Contatto</h3>
+
+                </header>
+
+                <main>
+
+                    <div class="contact-hub">
+                        <img :src="`img/avatar${contacts[indexOfContact].avatar}.jpg`" alt="">
+                        <h3>{{ contacts[indexOfContact].name }}</h3>
+                    </div>
+
+                    <div class="contact-media">
+
+                        <div class="aligner">
+
+                            <a href="">Media, link e documenti</a>
+                            <i class="fas fa-chevron-right"></i>
+
+                        </div>
+
+                        <div class="empty">
+                            Nessun media, link e documento
+                        </div>
+
+                    </div>
+
+                    <div class="contact-settings">
+
+                        <ul>
+                            <li class="aligner">
+                                Disattiva notifiche
+                                <i class="far"
+                                :class="[{'fa-check-square' : iconChecked},{'fa-square' : iconChecked == false}]"
+                                @click="iconChecked = !iconChecked"
+                                ></i>
+                            </li>
+                            <li class="aligner">
+                                Messaggi importanti <i class="fas fa-chevron-right"></i>
+                            </li>
+                            <li class="aligner">
+                                Messaggi effimeri <i class="fas fa-chevron-right"></i>
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="contact-number">
+
+                        <a href="">Info e numero di telefono</a>
+
+                        <ul>
+                            <li>
+                                {{ contacts[indexOfContact].stato }}
+                            </li>
+                            <li>
+                                {{ contacts[indexOfContact].numero }}
+                            </li>
+                        </ul>
+
+                    </div>
+
+                    <div class="block-contact aligner">
+
+                        <i class="fas fa-ban"></i>
+
+                        <h3>Blocca</h3>
+
+                    </div>
+
+                    <div class="report-contact aligner">
+
+                        <i class="fas fa-thumbs-down"></i>
+
+                        <h3>Segnala contatto</h3>
+
+                    </div>
+
+                    <div class="delete-contact aligner">
+
+                        <i class="fas fa-trash"></i>
+
+                        <h3>Elimina chat</h3>
+
+                    </div>
+
+                </main>
+
             </section>
 
         </div>

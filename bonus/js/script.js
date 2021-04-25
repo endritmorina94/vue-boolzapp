@@ -15,6 +15,8 @@ var app = new Vue({
         		avatar: '_9',
                 isActive: true,
         		visible: true,
+                stato: 'Hey there! I am using WhatsApp, capra!',
+                numero: "+39 349 161 2398",
                 newMessage: {
                     newMsg: false,
                     numNewMsg: 0
@@ -62,6 +64,8 @@ var app = new Vue({
         		avatar: '_2',
                 isActive: false,
         		visible: true,
+                stato: 'Hai cacato?',
+                numero: "+39 364 542 2557",
                 newMessage: {
                     newMsg: false,
                     numNewMsg: 0
@@ -114,6 +118,8 @@ var app = new Vue({
         		avatar: '_3',
                 isActive: false,
         		visible: true,
+                stato: 'Hey there! I am using WhatsApp.',
+                numero: "+39 368 871 6582",
                 newMessage: {
                     newMsg: false,
                     numNewMsg: 0
@@ -166,6 +172,8 @@ var app = new Vue({
         		avatar: '_5',
                 isActive: false,
         		visible: true,
+                stato: 'Hey there! I am using WhatsApp.',
+                numero: "+39 387 587 5627",
                 newMessage: {
                     newMsg: false,
                     numNewMsg: 0
@@ -207,6 +215,8 @@ var app = new Vue({
         		avatar: '_4',
                 isActive: false,
         		visible: true,
+                stato: 'Teso, mi manchi troppo <3',
+                numero: "+39 324 551 1628",
                 newMessage: {
                     newMsg: false,
                     numNewMsg: 0
@@ -254,6 +264,8 @@ var app = new Vue({
         		avatar: '_6',
                 isActive: false,
         		visible: true,
+                stato: 'Hey there! I am using WhatsApp.',
+                numero: "+39 349 161 2398",
                 newMessage: {
                     newMsg: false,
                     numNewMsg: 0
@@ -289,6 +301,8 @@ var app = new Vue({
         		avatar: '_7',
                 isActive: false,
         		visible: true,
+                stato: 'Hey there! I am using WhatsApp.',
+                numero: "+39 349 161 2398",
                 newMessage: {
                     newMsg: false,
                     numNewMsg: 0
@@ -341,14 +355,16 @@ var app = new Vue({
         		avatar: '_8',
                 isActive: false,
         		visible: true,
+                stato: 'Hey there! I am using WhatsApp.',
+                numero: "+39 358 158 5558",
                 newMessage: {
                     newMsg: false,
                     numNewMsg: 0
                 },
                 messages: [
         			{
-        				date: '20/03/2020 16:30:00',
-        				text: 'Ciao come stai?',
+        				date: '10/01/2020 15:30:55',
+                        text: 'Ciao Dani, amo troppo il tuo ruolo in into the badlands..',
         				status: 'sent',
                         state: [
                             {
@@ -364,15 +380,20 @@ var app = new Vue({
                         dropdown: false
         			},
         			{
-        				date: '20/03/2020 16:30:55',
-        				text: 'Bene grazie! Stasera ci vediamo?',
-        				status: 'received',
-                        dropdown: false
-        			},
-        			{
-        				date: '20/03/2020 16:35:00',
-        				text: 'Mi piacerebbe ma devo andare a fare la spesa.',
+        				date: '10/01/2020 15:50:00',
+                        text: 'Rispondimi Dani, sono un tuo fan',
         				status: 'sent',
+                        state: [
+                            {
+                                sent: false
+                            },
+                            {
+                                delivered: true
+                            },
+                            {
+                                seen: true
+                            }
+                        ],
                         dropdown: false
         			}
         		]
@@ -406,7 +427,7 @@ var app = new Vue({
         ],
 
         azizRandomAnswers: [
-            'piadina, faccio senza shipolla?',
+            'piadina faccio senza shipolla?',
             'meto poco picante?',
             'un panino senza keshap alora',
         ],
@@ -419,7 +440,9 @@ var app = new Vue({
 
         backGroundWhite: false,
 
-        contactInfoWindow: false
+        contactInfoWindow: false,
+
+        iconChecked: false
 
     },
 
@@ -512,8 +535,8 @@ var app = new Vue({
 
                     let risposta = "";
 
-                    switch (this.contacts.indexOf(contatto)) {
-                        case 0:
+                    switch (contatto.name) {
+                        case "Vittorio S.":
                             risposta = {
                                 date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
                                 text: this.vitRandomAnswers[randomNumb(this.vitRandomAnswers.length)],
@@ -523,7 +546,7 @@ var app = new Vue({
 
                             break;
 
-                        case 1:
+                        case "Angelo Pintus":
                             risposta = {
                                 date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
                                 text: "HAI CACATO?",
@@ -533,7 +556,7 @@ var app = new Vue({
 
                             break;
 
-                        case 2:
+                        case "Aziz Kebabbaro":
                             risposta = {
                                 date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
                                 text: this.azizRandomAnswers[randomNumb(this.azizRandomAnswers.length)],
@@ -543,7 +566,7 @@ var app = new Vue({
 
                             break;
 
-                        case 3:
+                        case "Elio":
                             risposta = {
                                 date: dayjs().format("DD/MM/YYYY HH:mm:ss"),
                                 text: this.elioRandomAnswers[randomNumb(this.elioRandomAnswers.length)],
@@ -566,7 +589,9 @@ var app = new Vue({
 
                     messaggi.push(risposta);
 
-                    //Faccio scrollare la finestra verso l'ultimo messaggio
+                    this.contacts.splice(0, 0, this.contacts.splice(this.contacts.indexOf(contatto), 1)[0]);
+
+                    // Faccio scrollare la finestra verso l'ultimo messaggio
                     setTimeout(() => {
 
                         this.scrollToLastSmooth();

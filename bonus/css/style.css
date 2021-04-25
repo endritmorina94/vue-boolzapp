@@ -490,12 +490,104 @@ main .arrow i {
 }
 /* FINE MESSENGER */
 
-.contact-info-window{
+/* INIZIO SEZIONE CONTACT INFO */
+.contact-info-window {
     float: left;
     width: 30%;
     height: 100%;
-    background-color: red;
+    font-weight: 500;
 }
+
+.contact-info-window header {
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.contact-info-window header i {
+    padding: 8px 30px 8px 8px;
+}
+
+.contact-info-window main {
+    background-color: #EDEDED;
+    height: calc(100% - 60px);
+    overflow-y: auto;
+}
+
+.contact-hub {
+    background-color: white;
+    padding: 30px 30px 40px;
+}
+
+.contact-hub img {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 30px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.contact-hub h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.contact-info-window main > *:not(.contact-hub, .contact-settings, .contact-number) {
+    padding: 20px 30px;
+    background-color: white;
+    margin-top: 10px;
+}
+
+.contact-media .aligner,
+.contact-info-window li{
+    justify-content: space-between;
+}
+
+.contact-info-window a {
+    text-decoration: none;
+    color: #009688;
+    font-size: 15px;
+}
+
+.contact-media .empty {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 14px;
+    padding: 30px 0 20px;
+}
+
+.contact-settings, .contact-number {
+    background-color: white;
+    margin-top: 10px;
+}
+
+.contact-info-window ul {
+    list-style-type: none;
+    padding-left: 30px;
+}
+
+.contact-info-window li{
+    padding: 20px 30px 20px 0;
+}
+
+.contact-info-window li:not(:last-child){
+    border-bottom: 1px solid #F2F2F2;
+}
+
+.contact-number a {
+    display: inline-block;
+    padding-left: 30px;
+    margin-top: 20px;
+}
+
+.block-contact i, .report-contact i, .delete-contact i {
+    margin-right: 30px;
+    color: red;
+    transform: scaleX(-1);;
+}
+
+/* FINE SEZIONE CONTACT INFO */
+
+
 
 /* RESPONSIVE SECTION */
 @media screen and (max-width: 992px) {
