@@ -595,7 +595,7 @@ main .msg-cloud:hover .arrow {
     padding: 20px 30px 20px 0;
 }
 
-.contact-info-window li:not(:last-child){
+.contact-info-window li:not(:last-child) {
     border-bottom: 1px solid #F2F2F2;
 }
 
@@ -623,7 +623,7 @@ main .msg-cloud:hover .arrow {
 /* RESPONSIVE SECTION */
 @media screen and (max-width: 1440px) {
 
-    .container{
+    .container {
         width: 100%;
         max-width: 100%;
     }
