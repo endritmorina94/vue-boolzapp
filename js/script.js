@@ -398,12 +398,14 @@ var app = new Vue({
 
         },
 
+        //Questa funzione scrolla fino ull'ultimo messaggio
         scrollToLast() {
             let lastMessagesArray = document.getElementsByClassName('msg-cloud');
             let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
             lastMessage.scrollIntoView();
         },
 
+        //Questa funzione scrolla fino ull'ultimo messaggio ma con smooth behavior
         scrollToLastSmooth() {
             let lastMessagesArray = document.getElementsByClassName('msg-cloud');
             let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];

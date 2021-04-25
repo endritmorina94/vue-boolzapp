@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BoolzApp</title>
+    <link rel="icon" href ="img/icon.png">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css" integrity="sha512-HK5fgLBL+xu6dm/Ii3z4xhlSUyZgTT9tuc/hSrtw6uzJOvgRr2a9jyxxT1ely+B+xFAmJKVSTbpM/CuL7qxO8w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+</head>
+
+<body>
+
+    <div class="container aligner">
+
+        <div id="root" class="app">
+            <!-- Inizio Sezione Contatti -->
+            <section @click="cleanDrops()" class="contacts" :class="{reduce : contactInfoWindow}">
+
+                <!-- Inizio Header Contatti -->
+                <header class="aligner" @click="backGroundWhite = false">
+
+                    <div class="user">
+                        <img :src="`img/avatar${user.avatar}.jpg`" alt="Avatar User">
+                        <h3>{{ user.name }}</h3>
+                    </div>
+
+                    <div class="icons">
+                        <i class="fas fa-circle-notch"></i>
+                        <i class="fas fa-comment-alt"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+
+                </header>
+                <!-- Fine Header Contatti -->
+
+                <!-- Inizio Sezione Setup delle Notifiche -->
+                <section class="notifications aligner" :class="hidingClass" @click="backGroundWhite = false">
+
+                    <span class="bell">
+                        <i class="fas fa-bell-slash"></i>
+                    </span>
+
+                    <div class="notifications-set">
+                        <p>Ricevi notifiche di nuovi messaggi</p>
+                        <a href="#" @click="hideThis()">Attiva notifiche desktop</a>
+                    </div>
+
+                </section>
+                <!-- Fine Sezione Setup delle Notifiche -->
+
+                <!-- Inizio Main -->
+                <main>
+
+                    <div class="contacts-container">
+
+                        <!-- Inizio Sezione Search -->
+                        <section class="search" :class="{'bg-white' : backGroundWhite}">
+                            <div class="input-container aligner">
+                                <i :class="[(backGroundWhite) ? 'fas fa-arrow-down' : 'fas fa-search',
+                                    {'rotate-arrow': backGroundWhite}]"
+                                    @click="backGroundWhite = false">
+
+                                    </i>
+                                <input v-model="contactToFind"
+                                @keyup="find(contactToFind)"
+                                @focus="backGroundWhite = true"
+                                type="text" name="" value=""
+                                placeholder="Cerca o inizia una nuova chat">
+                            </div>
+                        </section>
+                        <!-- Fine Sezione Search -->
+
+                        <!-- Inizio Lista Contatti -->
+                        <section class="user-contacts" @click="backGroundWhite = false">
+                            <ul class="contacts-list">
+
+                                <li v-for="(contact, index) in contacts" @click="giveIndex(index); addClassActive()" v-if="contact.visible == true" class="aligner" :class="{active : contacts[index].isActive}">
+                                    <img :src="`img/avatar${contact.avatar}.jpg`" alt="avatar">
+                                    <div class="contact-info">
+                                        <h3 :class="{bolder: contact.newMessage.newMsg}">{{ contact.name }}</h3>
+
+                                        <span class="last-msg" :class="{bolder: contact.newMessage.newMsg}">
+
+                                            <span v-if="contact.messages[contact.messages.length - 1].status == 'sent'"
+                                            class="status-icon-container">
+
+                                            <i class="status-icon fas fa-check-double blue">
+
+                                            </i>
+
+                                            <!-- DA RIVEDERE.....
+                                            <i class="status-icon"
+
+
+                                                :class="[
+
+                                                {'fas fa-check' : contacts[indexOfContact].messages[contact.messages.length - 1].state[0].sent},
+
+                                                {'fas fa-check-double' : contacts[indexOfContact].messages[contact.messages.length - 1].state[1].delivered},
+
+                                                {'blue' : contacts[indexOfContact].messages[contact.messages.length - 1].state[2].seen}
+
+                                                ]">
+
+                                            </i> -->
+
+
+                                        </span>
+
+                                            {{contact.messages[contact.messages.length - 1].text}}
+
+                                        </span>
+                                    </div>
+                                    <span class="time">{{contact.messages[contact.messages.length - 1].date}}</span>
+                                    <span class="new-message-not" v-if="contact.newMessage.newMsg">
+                                        {{contact.newMessage.numNewMsg}}
+                                    </span>
+                                </li>
+
+                            </ul>
+                        </section>
+                        <!-- Fine Lista Contatti -->
+
+                    </div>
+
+                </main>
+                <!-- Fine Main -->
+
+            </section>
+            <!-- Fine Sezione Contatti -->
+
+            <!-- Inizio Sezione Chat -->
+            <section class="chat" :class="{reduce : contactInfoWindow}"
+            @click="backGroundWhite = false">
+
+                <!-- Inizio Chat Header -->
+                <header class="aligner" @click="cleanDrops(); contactInfoWindow = true">
+
+                    <div class="user">
+                        <img :src="`img/avatar${contacts[indexOfContact].avatar}.jpg`" alt="Avatar User">
+                        <div class="user-info">
+                            <h3>{{ contacts[indexOfContact].name }}</h3>
+                            <!-- <p>Ultimo accesso oggi {{contacts[indexOfContact].messages[contacts[indexOfContact].messages.length - 1].date}}</p> -->
+                        </div>
+                    </div>
+
+                    <div class="icons">
+                        <i class="fas fa-search"></i>
+                        <i class="fas fa-ellipsis-v"></i>
+                    </div>
+
+                </header>
+                <!-- Fine Chat Header -->
+
+                <!-- Inizio Chat Content -->
+                <main>
+
+                    <div v-for="(message, index) in contacts[indexOfContact].messages"
+                    class="msg"
+                    :class="[checkMsgKind(index), {distance : checkNextMsg(index)}]">
+
+                        <div class="msg-cloud"
+                        :class="{first : checkIfFirst(index)}">
+
+                            <span>{{ message.text }}</span>
+
+                            <span class="arrow hide"
+                            :class="{right : checkDropwdown(index)}"
+                            @click="showDropdown(index)">
+                                <i class="fas fa-chevron-down"></i>
+                            </span>
+
+                            <span class="time">{{ message.date.slice(-9, -3) }}</span>
+
+                            <span v-if="message.status == 'sent'"
+                            class="status-icon-container">
+                                <i class="status-icon"
+
+                                :class="[
+
+                                {'fas fa-check' : message.state[0].sent},
+
+                                {'fas fa-check-double' : message.state[1].delivered},
+
+                                {'blue' : message.state[2].seen}
+
+                                ]">
+
+                                </i>
+                            </span>
+
+                            <!-- Dropdown Menu -->
+                            <ul v-if="contacts[indexOfContact].messages[index].dropdown"
+                            class="dropdown">
+
+                                <li>
+                                    Message info
+                                </li>
+
+                                <li @click="removeMsg(index)">
+                                    Delete Message
+                                </li>
+
+                            </ul>
+                            <!-- Fine Dropdown Menu -->
+
+                        </div>
+
+                    </div>
+
+                </main>
+                <!-- Fine Chat Content -->
+
+                <!-- Inizio Messenger -->
+                <section class="messenger aligner" @click="cleanDrops()">
+
+                    <i class="far fa-smile"></i>
+                    <i class="fas fa-paperclip"></i>
+                    <input v-model="newMessage" @click="clearNotifications()" @keyup.enter="addMsg()" type="text" placeholder="Scrivi un messaggio">
+                    <i class="fas fa-microphone"></i>
+
+                </section>
+                <!-- Fine Messenger -->
+
+            </section>
+            <!-- Fine Sezione Chat -->
+
+            <section v-if="(contactInfoWindow == true)" class="contact-info-window">
+                <div></div>
+            </section>
+
+        </div>
+
+    </div>
+
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+    <script src="js/script.js" charset="utf-8"></script>
+</body>
+
+</html>
