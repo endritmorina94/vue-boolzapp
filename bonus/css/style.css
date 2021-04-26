@@ -734,6 +734,10 @@ main .msg-cloud:hover .arrow {
         height: 100%;
     }
 
+    .contacts.reduce .user-info {
+        display: none;
+    }
+
 }
 
 @media screen and (max-width: 1300px) {

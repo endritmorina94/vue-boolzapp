@@ -457,15 +457,12 @@ var app = new Vue({
         giveIndex(index) {
 
             this.indexOfContact = index;
-
             this.contacts[this.indexOfContact].newMessage.newMsg = false;
             this.contacts[this.indexOfContact].newMessage.numNewMsg = 0;
 
             // ATTENZIONE: DA RIVEDERE....
             setTimeout(() => {
-
                 this.scrollToLast();
-
             }, 0);
 
         },
@@ -478,7 +475,6 @@ var app = new Vue({
             if (this.newMessage != "") {
 
                 const messaggi = this.contacts[this.indexOfContact].messages;
-
                 const contatto = this.contacts[this.indexOfContact];
 
                 //Creo l'oggetto
@@ -509,6 +505,7 @@ var app = new Vue({
                 //Porto il contatto in cima alla lista dei contatti
                 this.contacts.splice(0, 0, this.contacts.splice(this.contacts.indexOf(contatto), 1)[0]);
 
+                //Resetto a zero l'index del contatto per farmi tornare i suoi messaggi nella chat
                 this.indexOfContact = 0;
 
                 //Faccio scrollare la finestra verso l'ultimo messaggio
@@ -728,7 +725,7 @@ var app = new Vue({
             } else {
                 return "";
             }
-            
+
         },
 
         //Questa funzione chiud ei dropdown al click
@@ -742,13 +739,9 @@ var app = new Vue({
         checkNextMsg(msgIndex) {
 
             if (msgIndex > this.contacts[this.indexOfContact].messages.length - 2){
-
                 return false;
-
             } else {
-
                 return (this.contacts[this.indexOfContact].messages[msgIndex].status != this.contacts[this.indexOfContact].messages[msgIndex + 1].status);
-
             }
 
         },
@@ -767,15 +760,11 @@ var app = new Vue({
             if (msgIndex > 0){
 
                 if (this.contacts[this.indexOfContact].messages[msgIndex].status != this.contacts[this.indexOfContact].messages[msgIndex - 1].status){
-
                     return true;
-
                 }
 
             } else if (msgIndex == 0){
-
                 return true;
-
             }
 
         },
