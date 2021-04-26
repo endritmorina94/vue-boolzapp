@@ -1,4 +1,8 @@
 ## Clone di WhatsApp Web
+
+## Demo
+![Gif](/img/preview.gif "Demo Preview")
+
 ### Lista upgrades in versione Bonus (ispirate alla versione originale):
 - La WebApp è responsive fino a 715px
 - Aggiunta l'icona di WhatsApp al titolo della tab

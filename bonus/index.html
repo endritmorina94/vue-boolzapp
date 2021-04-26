@@ -123,7 +123,7 @@
 
                         <!-- Inizio Lista Contatti -->
                         <section class="users-contacts" @click="backGroundWhite = false">
-                            <ul v-if="contacts.length > 0" class="contacts-list">
+                            <ul class="contacts-list">
 
                                 <li v-for="(contact, index) in contacts"
                                 @click="giveIndex(index); addClassActive()"
@@ -214,7 +214,7 @@
                 <!-- Inizio Chat Content -->
                 <main>
 
-                    <div v-if="contacts[indexOfContact].messages.length > 0 && contacts.length > 0"
+                    <div v-if="contacts[indexOfContact].messages.length > 0"
                     v-for="(message, index) in contacts[indexOfContact].messages"
                     class="msg"
                     :class="[checkMsgKind(index), {distance : checkNextMsg(index)}]">
@@ -285,7 +285,7 @@
             <!-- Fine Sezione Chat -->
 
             <!-- Inizio Contact Info Window -->
-            <section v-if="contactInfoWindow == true && contacts.length > 0" class="contact-info-window">
+            <section v-if="contactInfoWindow == true" class="contact-info-window">
 
                 <header class="aligner">
                     <i class="fas fa-times" @click="contactInfoWindow = false"></i>
@@ -294,7 +294,7 @@
 
                 <main>
 
-                    <div class="contact-hub" v-if="contacts.length > 0">
+                    <div class="contact-hub">
                         <img :src="`img/avatar${contacts[indexOfContact].avatar}.jpg`" alt="">
                         <h3>{{ contacts[indexOfContact].name }}</h3>
                     </div>
