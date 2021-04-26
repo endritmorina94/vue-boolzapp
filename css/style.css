@@ -29,6 +29,11 @@ i {
     cursor: pointer;
 }
 
+h3,
+.contact-info-window h3{
+    cursor: default;
+}
+
 .hide-element {
     display: none;
 }

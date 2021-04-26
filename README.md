@@ -1,6 +1,7 @@
 ## Clone di WhatsApp Web
 ### Lista upgrades in versione Bonus (ispirate alla versione originale):
 - La WebApp è responsive fino a 715px
+- Aggiunta l'icona di WhatsApp al titolo della tab
 - Cliccando l'immagine dell'utente viene aperta una finestra "Profilo"
 - Nella sopracitata finestra viene visualizzata l'immagine dell'utente, il nome e lo stato, che sono poi anche modificabili
 - Link cliccabile nel banner azzurro delle notifiche che nasconde il banner stesso
@@ -10,7 +11,8 @@
 - Inviando un messaggio ad un contatto, questo viene spostato in cima alla lista (tornando in cima anche quando risponde, nel caso venga inviato un messaggio ad un altro contatto prima della sua risposta)
 - Quando il contatto risponde, il suo nome e l'ultimo messaggio vengono evidenziati
 - Quando il contatto risponde, compare il badge di notifica che indica quanti messaggi sono stati ricevuti
-- Quando viene inviato un messaggio compare (sia nell'elenco dei contatti e sia nella chat) una spunta grigia (messaggio inviato), dopo random secondi compare una doppia spunta grigia (messaggio consegnato al destinatario), dopo random secondi la doppia spunta diventa azzurra (messaggio visualizzato) ed infine dopo random secondi arriva la risposta del contatto.
+- Non si possono inviare messaggi vuoti
+- Quando viene inviato un messaggio, compare dopo 2 secondi (sia nell'elenco dei contatti e sia nella chat) una spunta grigia (messaggio inviato) di fianco al messaggio, dopo 4 secondi compare una doppia spunta grigia (messaggio consegnato), dopo un range che va da 6 a 15 secondi la doppia spunta diventa azzurra (messaggio visualizzato) ed infine dopo 4 secondi arriva la risposta del contatto.
 - I messaggi ricevuti e inviati sono più distanti tra loro rispetto a quelli dello stesso tipo
 - Il primo messaggio di un tipo (inviati o ricevuti) ha la coda in alto di fianco alla nuvoletta
 - Premendo il nome del contatto in alto nella chat, compare una finestra con le info del contatto

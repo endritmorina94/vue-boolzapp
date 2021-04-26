@@ -208,12 +208,8 @@ var app = new Vue({
 
             this.indexOfContact = index;
 
-            // ATTENZIONE: DA RIVEDERE....
-            setTimeout(() => {
-
-                this.scrollToLast();
-
-            }, 0);
+            //Faccio scrollare all'ultimo messaggio la chat alla sua apertura
+            this.scrollToLast();
 
         },
 
@@ -239,11 +235,7 @@ var app = new Vue({
             this.newMessage = "";
 
             //Faccio scrollare la finestra verso l'ultimo messaggio
-            setTimeout(() => {
-
-                this.scrollToLastSmooth();
-
-            }, 10);
+            this.scrollToLastSmooth();
 
             //Setto un timeout un secondo dopo l'invio del messaggio da parte
             //dell'utente, creerà un messaggio di risposta "ok" e lo pusherà
@@ -261,11 +253,8 @@ var app = new Vue({
 
                 messaggi.push(risposta);
 
-                setTimeout(() => {
-
-                    this.scrollToLastSmooth();
-
-                }, 10);
+                //Faccio scrollare la finestra verso l'ultimo messaggio
+                this.scrollToLastSmooth();
 
             }, 1000);
 
@@ -432,16 +421,20 @@ var app = new Vue({
 
         //Questa funzione scrolla fino ull'ultimo messaggio
         scrollToLast() {
-            let lastMessagesArray = document.getElementsByClassName('msg-cloud');
-            let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
-            lastMessage.scrollIntoView();
+            this.$nextTick(function () {
+                let lastMessagesArray = document.getElementsByClassName('msg-cloud');
+                let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
+                lastMessage.scrollIntoView();
+            });
         },
 
         //Questa funzione scrolla fino ull'ultimo messaggio ma con smooth behavior
         scrollToLastSmooth() {
-            let lastMessagesArray = document.getElementsByClassName('msg-cloud');
-            let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
-            lastMessage.scrollIntoView({behavior: 'smooth'});
+            this.$nextTick(function () {
+                let lastMessagesArray = document.getElementsByClassName('msg-cloud');
+                let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
+                lastMessage.scrollIntoView({behavior: 'smooth'});
+            });
         }
 
     }

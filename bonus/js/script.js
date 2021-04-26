@@ -90,13 +90,13 @@ var app = new Vue({
                         dropdown: false
         			},
         			{
-        				date: '20/03/2020 16:30:55',
+        				date: '20/03/2020 16:50:55',
         				text: 'HAI CACATO?',
         				status: 'received',
                         dropdown: false
         			},
         			{
-        				date: '20/03/2020 16:35:00',
+        				date: '20/03/2020 16:51:00',
         				text: 'basta Angelo, non fa più ridere!',
         				status: 'sent',
                         state: [
@@ -181,13 +181,13 @@ var app = new Vue({
                 },
         		messages: [
         			{
-        				date: '28/03/2020 10:10:40',
+        				date: '28/03/2020 07:05:40',
         				text: 'La Marianna va in campagna',
         				status: 'received',
                         dropdown: false
         			},
         			{
-        				date: '28/03/2020 10:20:10',
+        				date: '28/03/2020 07:20:10',
         				text: 'Sicuro di non aver sbagliato chat?',
         				status: 'sent',
                         state: [
@@ -204,7 +204,7 @@ var app = new Vue({
                         dropdown: false
         			},
         			{
-        				date: '28/03/2020 16:15:22',
+        				date: '28/03/2020 11:15:22',
         				text: 'Ah scusa!',
         				status: 'received',
                         dropdown: false
@@ -224,7 +224,7 @@ var app = new Vue({
                 },
         		messages: [
         			{
-        				date: '28/03/2020 10:10:40',
+        				date: '28/03/2020 09:41:40',
         				text: 'Ora basta, sono stufa!',
         				status: 'received',
                         dropdown: false
@@ -236,7 +236,7 @@ var app = new Vue({
                         dropdown: false
         			},
         			{
-        				date: '28/03/2020 16:15:22',
+        				date: '28/03/2020 13:15:22',
         				text: 'Perdonami tesoro ma ci tengo troppo a questo corso e penso che dovremmo prenderci una pausa fino ad Agosto..',
         				status: 'sent',
                         state: [
@@ -253,7 +253,7 @@ var app = new Vue({
                         dropdown: false
         			},
                     {
-        				date: '28/03/2020 16:20:30',
+        				date: '28/03/2020 13:21:30',
         				text: 'Sei solo un bastardo.. Cosa diavolo ha il CSS che io non ho!?',
         				status: 'received',
                         dropdown: false
@@ -398,6 +398,66 @@ var app = new Vue({
                         dropdown: false
         			}
         		]
+        	},
+            {
+        		name: 'Cristiano',
+        		avatar: '_10',
+                isActive: false,
+        		visible: true,
+                stato: 'Hey there! I am using WhatsApp.',
+                numero: "+39 324 874 4288",
+                newMessage: {
+                    newMsg: false,
+                    numNewMsg: 0
+                },
+                messages: [
+        			{
+        				date: '10/01/2020 15:30:55',
+                        text: 'Ciao, hai portato a spasso il gatto?',
+        				status: 'received',
+                        dropdown: false
+        			},
+        			{
+        				date: '10/01/2020 15:50:00',
+                        text: 'Si, tu?',
+        				status: 'sent',
+                        state: [
+                            {
+                                sent: false
+                            },
+                            {
+                                delivered: true
+                            },
+                            {
+                                seen: true
+                            }
+                        ],
+                        dropdown: false
+        			},
+                    {
+        				date: '10/01/2020 15:30:55',
+                        text: 'No, ma piovono rubinetti',
+        				status: 'received',
+                        dropdown: false
+        			},
+                    {
+        				date: '10/01/2020 15:50:00',
+                        text: 'Nella vita non si può mai sapere',
+        				status: 'sent',
+                        state: [
+                            {
+                                sent: false
+                            },
+                            {
+                                delivered: true
+                            },
+                            {
+                                seen: true
+                            }
+                        ],
+                        dropdown: false
+        			}
+        		]
         	}
         ],
 
@@ -415,10 +475,14 @@ var app = new Vue({
         hidingClass: '',
 
         randomAnswers: [
-            'si, poi passo a prenderti',
+            'Sì, poi passo a prenderti',
             'ok, a dopo zingaro',
-            'no senti stasera proprio non posso',
-            'finisco la warzonata e arrivo'
+            'No senti stasera proprio non posso',
+            'finisco la warzonata e arrivo',
+            'La verdura di una volta aveva tutto un altro sapore',
+            'Non si finisce mai di imparare',
+            'Di questo passo chissà dove andremo a finire'
+
         ],
 
         vitRandomAnswers: [
@@ -460,10 +524,9 @@ var app = new Vue({
             this.contacts[this.indexOfContact].newMessage.newMsg = false;
             this.contacts[this.indexOfContact].newMessage.numNewMsg = 0;
 
-            // ATTENZIONE: DA RIVEDERE....
-            setTimeout(() => {
-                this.scrollToLast();
-            }, 0);
+            //Faccio scrollare all'ultimo messaggio la chat alla sua apertura
+            this.scrollToLast();
+
 
         },
 
@@ -509,12 +572,7 @@ var app = new Vue({
                 this.indexOfContact = 0;
 
                 //Faccio scrollare la finestra verso l'ultimo messaggio
-                setTimeout(() => {
-
-                    this.scrollToLastSmooth();
-
-                }, 10);
-
+                this.scrollToLastSmooth();
 
                 //Setto un timeout che cambia l'icona del messaggio da inviato a ricevuto 2 secondi dopo l'invio
                 setTimeout(() => {
@@ -524,8 +582,9 @@ var app = new Vue({
 
                 }, 2000);
 
-                // METTERE MATH RANDOM.
-                const tempoRandom = 6000;
+                //Stabilisco un tempo random per la lettura del messaggio
+                //da parte del contatto da 6 a 15 secondi
+                const tempoRandom = Math.floor(Math.random()* (15000 - 6000)) + 6000;
 
                 //Setto un timeout che in un range tra 10 e 60 dopo l'invio del messaggio da parte
                 //dell'utente, cambierà prima l'icona di stato del messeggio in SEEN(letto) e
@@ -598,12 +657,8 @@ var app = new Vue({
 
                         this.contacts.splice(0, 0, this.contacts.splice(this.contacts.indexOf(contatto), 1)[0]);
 
-                        // Faccio scrollare la finestra verso l'ultimo messaggio
-                        setTimeout(() => {
-
-                            this.scrollToLastSmooth();
-
-                        }, 10);
+                        //Faccio scrollare la finestra verso l'ultimo messaggio
+                        this.scrollToLastSmooth();
 
                         contatto.newMessage.numNewMsg += 1;
                         contatto.newMessage.newMsg = true;
@@ -778,16 +833,20 @@ var app = new Vue({
 
         //Questa funzione scrolla fino ull'ultimo messaggio
         scrollToLast() {
-            let lastMessagesArray = document.getElementsByClassName('msg-cloud');
-            let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
-            lastMessage.scrollIntoView();
+            this.$nextTick(function () {
+                let lastMessagesArray = document.getElementsByClassName('msg-cloud');
+                let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
+                lastMessage.scrollIntoView();
+            });
         },
 
         //Questa funzione scrolla fino ull'ultimo messaggio ma con smooth behavior
         scrollToLastSmooth() {
-            let lastMessagesArray = document.getElementsByClassName('msg-cloud');
-            let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
-            lastMessage.scrollIntoView({behavior: 'smooth'});
+            this.$nextTick(function () {
+                let lastMessagesArray = document.getElementsByClassName('msg-cloud');
+                let lastMessage = lastMessagesArray[lastMessagesArray.length - 1];
+                lastMessage.scrollIntoView({behavior: 'smooth'});
+            });
         },
 
         //Questa funzione cancella una chat
