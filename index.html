@@ -68,7 +68,7 @@
                         <!-- Fine Sezione Search -->
 
                         <!-- Inizio Lista Contatti -->
-                        <section class="user-contacts">
+                        <section class="users-contacts">
                             <ul class="contacts-list">
 
                                 <li v-for="(contact, index) in contacts" @click="giveIndex(index); addClassActive()" v-if="contact.visible == true" class="aligner" :class="{active : contacts[index].isActive}">
@@ -76,10 +76,11 @@
                                     <div class="contact-info">
                                         <h3>{{contact.name}}</h3>
                                         <span class="last-msg">
-                                            {{contact.messages[contact.messages.length - 1].text}}
+                                            {{getLastMsg(index)}}
                                         </span>
                                     </div>
-                                    <span class="time">{{contact.messages[contact.messages.length - 1].date}}
+                                    <span class="time">
+                                        {{getLastMsgDate(index)}}
                                     </span>
                                 </li>
 
@@ -105,11 +106,14 @@
                         <img :src="`img/avatar${contacts[indexOfContact].avatar}.jpg`" alt="Avatar User">
                         <div class="user-info">
                             <h3>{{ contacts[indexOfContact].name }}</h3>
-                            <p>Ultimo accesso
-                                <span v-if="contacts[indexOfContact].messages.length > 0">
-                                    {{contacts[indexOfContact].messages[contacts[indexOfContact].messages.length - 1].date}}
+                            <p v-if="contacts[indexOfContact].messages.length > 0">
+                                Ultimo accesso
+                                <span>
+                                    {{getLastMsgDate(indexOfContact)}}
                                 </span>
+
                             </p>
+                            <p v-else></p>
                         </div>
                     </div>
 

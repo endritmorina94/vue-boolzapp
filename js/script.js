@@ -351,6 +351,38 @@ var app = new Vue({
 
         },
 
+        //Questa funzione tornerà l'ultimo messaggio del contatto
+        getLastMsg(contactIndex) {
+            let messagesArray = this.contacts[contactIndex].messages;
+
+            if (messagesArray.length > 0) {
+                let lastMessage = messagesArray[messagesArray.length - 1].text;
+
+                return lastMessage;
+
+            //Se non ci sono messaggi...
+            } else {
+                return "";
+            }
+
+        },
+
+        //Questa funzione tornerà l'ora dell'ultimo messaggio del contatto tagliandola dalla data
+        getLastMsgDate(contactIndex) {
+            let messagesArray = this.contacts[contactIndex].messages;
+
+            if (messagesArray.length > 0) {
+                let lastMessageDate = messagesArray[messagesArray.length - 1].date;
+
+                return lastMessageDate;
+
+            //Se non ci sono messaggi...
+            } else {
+                return "";
+            }
+
+        },
+
         //Questa funzione chiud ei dropdown al click
         checkDropwdown(msgIndex) {
 

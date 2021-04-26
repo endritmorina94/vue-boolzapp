@@ -330,7 +330,7 @@ header {
 /* FINE SEARCH */
 
 /* INIZIO LISTA CONTATTI */
-.user-contacts {
+.users-contacts {
     flex-grow: 1;
     overflow-y: auto;
 }
