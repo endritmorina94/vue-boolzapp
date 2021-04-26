@@ -27,7 +27,15 @@
                 </header>
 
                 <section class="user-picture">
-                    <img :src="`img/avatar${user.avatar}.jpg`" alt="Avatar User">
+                    <div class="users-img-container">
+                        <img :src="`img/avatar${user.avatar}.jpg`" alt="Avatar User">
+                        <div class="overlay">
+                            <p>
+                                <i class="fas fa-camera"></i>
+                                Cambia immagine del profilo
+                            </p>
+                        </div>
+                    </div>
                 </section>
 
                 <section class="user-name-set">
@@ -40,7 +48,7 @@
 
                 <section class="user-name-advise">
                     <p>
-                        Questo non è il tuo nome utente o PIN. Questo nome sarà visibile ai tuoi contatti WhatsApp.
+                        Questo non è il tuo nome utente o PIN. Questo nome sarà visibile ai tuoi contatti BoolzApp.
                     </p>
                 </section>
 
@@ -190,7 +198,7 @@
                         <div class="user-info">
                             <h3>{{ contacts[indexOfContact].name }}</h3>
                             <p v-if="contacts[indexOfContact].messages.length > 0">
-                                Ultimo accesso oggi {{getLastMsgDate(indexOfContact)}}
+                                Ultimo accesso oggi alle {{getLastMsgDate(indexOfContact)}}
                             </p>
                         </div>
                     </div>
