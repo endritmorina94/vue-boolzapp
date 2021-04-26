@@ -18,6 +18,43 @@
     <div class="container aligner">
 
         <div id="root" class="app">
+
+            <!-- Inizio User Window -->
+            <section class="user-info-window" :class="[{show : userInfoWindow}, {reduce : contactInfoWindow}]">
+                <header>
+                    <i class="fas fa-arrow-left" @click="userInfoWindow = false"></i>
+                    <h3>Profilo</h3>
+                </header>
+
+                <section class="user-picture">
+                    <img :src="`img/avatar${user.avatar}.jpg`" alt="Avatar User">
+                </section>
+
+                <section class="user-name-set">
+                    <a href="">Il tuo nome</a>
+                    <div class="name-input">
+                        <input type="text" v-model="user.name">
+                        <i class="fas fa-pen"></i>
+                    </div>
+                </section>
+
+                <section class="user-name-advise">
+                    <p>
+                        Questo non è il tuo nome utente o PIN. Questo nome sarà visibile ai tuoi contatti WhatsApp.
+                    </p>
+                </section>
+
+                <section class="user-status">
+                    <a href="">Info</a>
+                    <div class="status-input">
+                        <input type="text" v-model="user.stato">
+                        <i class="fas fa-pen"></i>
+                    </div>
+                </section>
+
+            </section>
+            <!-- Fine User Window -->
+
             <!-- Inizio Sezione Contatti -->
             <section @click="cleanDrops()" class="contacts" :class="{reduce : contactInfoWindow}">
 
@@ -25,7 +62,7 @@
                 <header class="aligner" @click="backGroundWhite = false">
 
                     <div class="user">
-                        <img :src="`img/avatar${user.avatar}.jpg`" alt="Avatar User">
+                        <img :src="`img/avatar${user.avatar}.jpg`" alt="Avatar User" @click="userInfoWindow = true">
                         <div class="user-info">
                             <h3>{{ user.name }}</h3>
                         </div>
@@ -66,8 +103,7 @@
                                 <i :class="[(backGroundWhite) ? 'fas fa-arrow-down' : 'fas fa-search',
                                     {'rotate-arrow': backGroundWhite}]"
                                     @click="backGroundWhite = false">
-
-                                    </i>
+                                </i>
                                 <input v-model="contactToFind"
                                 @keyup="find(contactToFind)"
                                 @focus="backGroundWhite = true"
@@ -117,11 +153,9 @@
                                     </div>
 
                                     <span class="time">{{contact.messages[contact.messages.length - 1].date.slice(-8, -3)}}</span>
-
                                     <span class="arrow">
                                         <i class="fas fa-chevron-down"></i>
                                     </span>
-
                                     <span class="new-message-not" v-if="contact.newMessage.newMsg">
                                         {{contact.newMessage.numNewMsg}}
                                     </span>
@@ -207,7 +241,6 @@
                                 <li>
                                     Message info
                                 </li>
-
                                 <li @click="removeMsg(index)">
                                     Delete Message
                                 </li>
@@ -236,14 +269,12 @@
             </section>
             <!-- Fine Sezione Chat -->
 
+            <!-- Inizio Contact Info Window -->
             <section v-if="(contactInfoWindow == true)" class="contact-info-window">
 
                 <header class="aligner">
-
                     <i class="fas fa-times" @click="contactInfoWindow = false"></i>
-
                     <h3>Info Contatto</h3>
-
                 </header>
 
                 <main>
@@ -254,22 +285,16 @@
                     </div>
 
                     <div class="contact-media">
-
                         <div class="aligner">
-
                             <a href="">Media, link e documenti</a>
                             <i class="fas fa-chevron-right"></i>
-
                         </div>
-
                         <div class="empty">
                             Nessun media, link e documento
                         </div>
-
                     </div>
 
                     <div class="contact-settings">
-
                         <ul>
                             <li class="aligner">
                                 Disattiva notifiche
@@ -285,13 +310,10 @@
                                 Messaggi effimeri <i class="fas fa-chevron-right"></i>
                             </li>
                         </ul>
-
                     </div>
 
                     <div class="contact-number">
-
                         <a href="">Info e numero di telefono</a>
-
                         <ul>
                             <li>
                                 {{ contacts[indexOfContact].stato }}
@@ -300,31 +322,21 @@
                                 {{ contacts[indexOfContact].numero }}
                             </li>
                         </ul>
-
                     </div>
 
                     <div class="block-contact aligner">
-
                         <i class="fas fa-ban"></i>
-
                         <h3>Blocca</h3>
-
                     </div>
 
                     <div class="report-contact aligner">
-
                         <i class="fas fa-thumbs-down"></i>
-
                         <h3>Segnala contatto</h3>
-
                     </div>
 
                     <div class="delete-contact aligner" @click="deleteChat()">
-
                         <i class="fas fa-trash"></i>
-
                         <h3>Elimina chat</h3>
-
                     </div>
 
                 </main>

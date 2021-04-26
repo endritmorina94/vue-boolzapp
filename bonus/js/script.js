@@ -6,7 +6,8 @@ var app = new Vue({
 
         user: {
             name: "Endrit Morina",
-            avatar: "_1"
+            avatar: "_1",
+            stato: "Ciao curiosone :)"
         },
 
         contacts: [
@@ -441,6 +442,8 @@ var app = new Vue({
         backGroundWhite: false,
 
         contactInfoWindow: false,
+
+        userInfoWindow: false,
 
         iconChecked: false
 

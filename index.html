@@ -105,7 +105,7 @@
                         <img :src="`img/avatar${contacts[indexOfContact].avatar}.jpg`" alt="Avatar User">
                         <div class="user-info">
                             <h3>{{ contacts[indexOfContact].name }}</h3>
-                            <p>Ultimo accesso oggi
+                            <p>Ultimo accesso
                                 <span v-if="contacts[indexOfContact].messages.length > 0">
                                     {{contacts[indexOfContact].messages[contacts[indexOfContact].messages.length - 1].date}}
                                 </span>
