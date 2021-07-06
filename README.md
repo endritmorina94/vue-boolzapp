@@ -1,6 +1,6 @@
 ## Clone di WhatsApp Web
 
-## Demo
+## Demo Bonus Version
 ![Gif](/img/preview.gif "Demo Preview")
 
 ### Lista upgrades in versione Bonus (ispirate alla versione originale):
